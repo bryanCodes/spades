@@ -1,5 +1,4 @@
 ﻿using System.Security.Cryptography;
-using System.Security.Policy;
 using System.Text;
 using Microsoft.AspNet.SignalR;
 
