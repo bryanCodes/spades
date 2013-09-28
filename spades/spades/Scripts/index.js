@@ -1,28 +1,8 @@
-//var chatModel = function() {
-//    var self = this;
-//    //observables
-//    self.username = ko.observable();
-//    self.email = ko.observable();
-//    self.message = ko.observable();
-//    self.messages = ko.observableArray();
-    
-//    //computeds
-//    self.emailHash = ko.computed(function() {
-//        return CryptoJS.MD5(self.email().toLowerCase());
-//    });
-//};
-
 var chatModel = {
-    //observables
     username: ko.observable(),
     email: ko.observable(),
     message: ko.observable(),
     messages: ko.observableArray(),
-
-    //computeds
-    //emailHash: ko.computed(function () {
-    //    return CryptoJS.MD5(this.email().toLowerCase());
-    //})
 };
 
 var chatHub = (function () {
