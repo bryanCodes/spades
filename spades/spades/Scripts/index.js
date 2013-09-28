@@ -24,8 +24,7 @@ var chatHub = (function () {
 })();
 
 function enterRoom() {
-    $("#login-form").fadeOut();
-    $("#chat-area").fadeIn();
+    $("#login-form").fadeOut(400, function () { $("#chat-area").fadeIn(); });
 }
 
 //page initialization
