@@ -1,4 +1,4 @@
-﻿var chatModel = {
+var chatModel = {
     username: ko.observable(),
     message: ko.observable(),
     messages: ko.observableArray(),
@@ -7,9 +7,27 @@
     }
 };
 
-var chatHub = {
-    send: function() {
-        chat.server.send(chatModel.message(), chatModel.username());
-        chatModel.message('');
+var chatHub = (function () {
+    $.connection.hub.start();
+    var server = $.connection.chatHub.server;
+    var client = $.connection.chatHub.client;
+
+    client.addMessage = function(message, user) {
+        chatModel.addMessage(message, user);
+    };
+
+    function send(message, username) {
+        server.send(message, username);
     }
+    
+    //function addMessage(message, user) {
+    //    chatModel.addMessage(message, user);
+    //}
+
+    return {
+        send: function() {
+            send(chatModel.message(), chatModel.username());
+            chatModel.message('');
+        }
 };
+})();
