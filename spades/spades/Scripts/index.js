@@ -15,18 +15,10 @@ var chatHub = (function () {
     client.addMessage = function(message, user) {
         chatModel.addMessage(message, user);
     };
-
-    function send(message, username) {
-        server.send(message, username);
-    }
     
-    //function addMessage(message, user) {
-    //    chatModel.addMessage(message, user);
-    //}
-
     return {
         send: function() {
-            send(chatModel.message(), chatModel.username());
+            server.send(chatModel.message(), chatModel.username());
             chatModel.message('');
         }
 };
