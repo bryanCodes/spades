@@ -8,7 +8,6 @@ var chatModel = {
 };
 
 var chatHub = (function () {
-    $.connection.hub.start();
     var server = $.connection.chatHub.server;
     var client = $.connection.chatHub.client;
 
@@ -23,3 +22,14 @@ var chatHub = (function () {
         }
     };
 })();
+
+function enterRoom() {
+    $("#login-form").fadeOut();
+    $("#chat-area").fadeIn();
+}
+
+//page initialization
+$(document).ready(function() {
+    $.connection.hub.start();
+    ko.applyBindings(chatModel);
+});
