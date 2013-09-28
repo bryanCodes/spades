@@ -8,7 +8,7 @@
     <script src="Scripts/jquery.signalR-1.1.3.js"></script>
     <script src="Scripts/knockout-2.3.0.debug.js"></script>
     <script src="/Spades/signalr/hubs"></script>
-    <!--<script src=""></script>-->
+    <script src="Scripts/index.js"></script>
 </head>
     <body>
         <label>your username:</label>
@@ -24,7 +24,6 @@
             <div data-bind="text: $data.message"></div>
         </div>
         
-        <script src="Scripts/index.js"></script>
         <script type="text/javascript">
             ko.applyBindings(chatModel);
         </script>

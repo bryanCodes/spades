@@ -4,9 +4,9 @@ namespace Spades.Hubs
 {
     public class ChatHub : Hub
     {
-        public void Send(string message, string username = "unknown")
+        public void Send(string username, string message)
         {
-            Clients.All.addMessage(message, username);
+            Clients.All.addMessage(username ?? "unknown", message);
         }
     }
 }
