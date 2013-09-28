@@ -26,9 +26,9 @@
             </form>
         
             <div data-bind="foreach: chatModel.messages">
-                <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + $data.emailHash }"/>
-                <div data-bind="text: $data.username + ':'"></div>
-                <div data-bind="text: $data.message"></div>
+                <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash }"/>
+                <div data-bind="text: username + ':'"></div>
+                <div data-bind="text: message"></div>
             </div>
         </div>
     </body>
