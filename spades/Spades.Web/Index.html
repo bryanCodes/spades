@@ -13,23 +13,25 @@
     <body>
         <form id="login-form" data-bind="submit: enterRoom">
             <label>Choose Your Username:</label>
-            <input type="text" id="name" data-bind="value: chatModel.username"/>
+            <input type="text" id="input-username" data-bind="value: chatModel.username"/>
             <label>Your Email Address:</label>
-            <input type="text" id="email" data-bind="value: chatModel.email"/>
+            <input type="text" id="input-email" data-bind="value: chatModel.email"/>
             <input type="submit" value="Enter"/>
         </form>
     
         <div id="chat-area">
+            <div id="chat-window">
+                <div data-bind="foreach: chatModel.messages">
+                    <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash + '?s=20' }"/>
+                    <div data-bind="text: username + ':'"></div>
+                    <div data-bind="text: message"></div>
+                </div>
+            </div>
+
             <form data-bind="submit: chatHub.send">
                 <input type="text" id="input-message" data-bind="value: chatModel.message"/>
                 <input type="submit" value="Send"/>
             </form>
-        
-            <div data-bind="foreach: chatModel.messages">
-                <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash }"/>
-                <div data-bind="text: username + ':'"></div>
-                <div data-bind="text: message"></div>
-            </div>
         </div>
     </body>
 </html>

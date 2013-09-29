@@ -24,7 +24,7 @@ var chatHub = (function () {
 function enterRoom() {
     $("#login-form").fadeOut(400, function () {
          $("#chat-area").fadeIn();
-         $('#input-message').focus();
+         $("#input-message").focus();
     });
 }
 
@@ -32,4 +32,5 @@ function enterRoom() {
 $(document).ready(function() {
     $.connection.hub.start();
     ko.applyBindings(chatModel);
+    $("#input-username").focus();
 });
