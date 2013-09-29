@@ -11,6 +11,9 @@ var chatHub = (function () {
 
     client.addMessage = function(username, message, emailHash) {
         chatModel.messages.push({ username: username, message: message, emailHash: emailHash });
+        var $chatWindow = $("#chat-window");
+        $chatWindow.scrollTop($chatWindow[0].scrollHeight);
+
     };
     
     return {
