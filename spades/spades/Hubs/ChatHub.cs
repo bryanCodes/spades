@@ -1,6 +1,5 @@
-﻿using System.Security.Cryptography;
-using System.Text;
-using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNet.SignalR;
+using Spades.App.Utilities;
 
 namespace Spades.Hubs
 {
@@ -8,17 +7,8 @@ namespace Spades.Hubs
     {
         public void Send(string username, string message, string email)
         {
-            var md5 = MD5.Create();
-            var emailBytes = Encoding.ASCII.GetBytes(email);
-            var hash = md5.ComputeHash(emailBytes);
-
-            var emailHash = new StringBuilder();
-            foreach (var b in hash)
-            {
-                emailHash.Append(b.ToString("X2"));
-            }
-            
-            Clients.All.addMessage(username ?? "unknown", message, emailHash.ToString().ToLower());
+            var emailHash = HashHelper.Md5(email).ToLower();
+            Clients.All.addMessage(username ?? "unknown", message, emailHash);
         }
     }
 }

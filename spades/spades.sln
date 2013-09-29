@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spades", "spades\Spades.csproj", "{7EEE522C-D759-4107-9BCD-621E65961778}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spades.Web", "spades\Spades.Web.csproj", "{7EEE522C-D759-4107-9BCD-621E65961778}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spades.App", "Spades.App\Spades.App.csproj", "{67491BA9-B2F1-45E8-90C4-6799630DB39B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,6 +15,10 @@ Global
 		{7EEE522C-D759-4107-9BCD-621E65961778}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EEE522C-D759-4107-9BCD-621E65961778}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EEE522C-D759-4107-9BCD-621E65961778}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67491BA9-B2F1-45E8-90C4-6799630DB39B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67491BA9-B2F1-45E8-90C4-6799630DB39B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67491BA9-B2F1-45E8-90C4-6799630DB39B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67491BA9-B2F1-45E8-90C4-6799630DB39B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
