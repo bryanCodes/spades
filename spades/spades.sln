@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spades.Web", "spades\Spades.Web.csproj", "{7EEE522C-D759-4107-9BCD-621E65961778}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spades.Web", "Spades.Web\Spades.Web.csproj", "{7EEE522C-D759-4107-9BCD-621E65961778}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Spades.App", "Spades.App\Spades.App.csproj", "{67491BA9-B2F1-45E8-90C4-6799630DB39B}"
 EndProject
