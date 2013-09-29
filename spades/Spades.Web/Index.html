@@ -21,7 +21,7 @@
     
         <div id="chat-area">
             <form data-bind="submit: chatHub.send">
-                <input type="text" data-bind="value: chatModel.message"/>
+                <input type="text" id="input-message" data-bind="value: chatModel.message"/>
                 <input type="submit" value="Send"/>
             </form>
         
