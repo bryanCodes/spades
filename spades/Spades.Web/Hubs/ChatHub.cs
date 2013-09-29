@@ -7,7 +7,7 @@ namespace Spades.Hubs
     {
         public void Send(string username, string message, string email)
         {
-            var emailHash = HashHelper.Md5(email).ToLower();
+            var emailHash = HashHelper.Md5(email ?? "unknown").ToLower();
             Clients.All.addMessage(username ?? "unknown", message, emailHash);
         }
     }

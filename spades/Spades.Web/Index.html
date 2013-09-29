@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Spades</title>
@@ -22,9 +22,13 @@
         <div id="chat-area">
             <div id="chat-window">
                 <div data-bind="foreach: chatModel.messages">
-                    <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash + '?s=20' }"/>
-                    <div data-bind="text: username + ':'"></div>
-                    <div data-bind="text: message"></div>
+                    <div class="message">
+                        <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash + '?s=50' }"/>
+                        <div class="message-holder">
+                            <div data-bind="text: username + ':'"></div>
+                            <div data-bind="text: message"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
 

@@ -20,6 +20,23 @@
 
 #chat-window{
     border-style: solid;
-    max-height: 250px;
+    height: 300px;
     overflow-y: auto;
+}
+
+/*message specific styles*/
+.message img {
+    border-radius: 40px;
+    display: inline;
+}
+
+.message div {
+    display: inline-block;
+}
+
+.message-holder {
+    border-style: solid;
+    border-radius: 20px;
+    padding: 10px;
+    max-width: 300px;
 }
