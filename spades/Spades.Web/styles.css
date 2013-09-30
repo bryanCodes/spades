@@ -36,13 +36,8 @@
 .user-info {
     /*border-style: solid;*/
     width: 75px;
-    padding: 10px;
     display: inline-block;
     text-align: center;
-}
-
-.username { 
-    display: inline 
 }
 
 .message {
@@ -51,7 +46,7 @@
     padding: 10px;
     max-width: 300px;
     display: inline-block;
-    vertical-align: text-bottom;
+    vertical-align: bottom;
 }
 
 .message-content {
