@@ -55,7 +55,7 @@
     word-wrap: break-word;
 }
 
-.user-info:after {
+/*.user-info:after {
     content: "\00a0";
     display: inline-block;
     position: relative;
@@ -64,7 +64,7 @@
     height: 0;
     border-width: 10px 20px 10px 0px;
     border-color: transparent #000 transparent #000;
-}
+}*/
 
 /*.message-content {
     border-style: solid;
