@@ -1,4 +1,4 @@
-﻿/*login form styles*/
+/*login form styles*/
 #login-form {
     border-style: solid;
     margin-left: auto;
@@ -25,18 +25,35 @@
 }
 
 /*message specific styles*/
-.message img {
+.user-info img {
     border-radius: 40px;
-    display: inline;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50px;
 }
 
-.message div {
+.user-info {
+    /*border-style: solid;*/
+    width: 75px;
+    padding: 10px;
     display: inline-block;
+    text-align: center;
 }
 
-.message-holder {
+.username { 
+    display: inline 
+}
+
+.message {
     border-style: solid;
     border-radius: 20px;
     padding: 10px;
     max-width: 300px;
+    display: inline-block;
+    vertical-align: text-bottom;
+}
+
+.message-content {
+    border-style: solid;
 }

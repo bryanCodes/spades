@@ -22,12 +22,12 @@
         <div id="chat-area">
             <div id="chat-window">
                 <div data-bind="foreach: chatModel.messages">
-                    <div class="message">
-                        <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash + '?s=50' }"/>
-                        <div class="message-holder">
-                            <div data-bind="text: username + ':'"></div>
-                            <div data-bind="text: message"></div>
-                        </div>
+                    <div class="message-content">
+                        <div class="user-info">
+                            <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash + '?s=50' }"/>
+                            <div class="username" data-bind="text: username + ':'"></div>
+                        </div>    
+                        <span class="message" data-bind="text: message"></span>
                     </div>
                 </div>
             </div>
