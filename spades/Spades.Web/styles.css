@@ -38,17 +38,31 @@
     width: 75px;
     display: inline-block;
     text-align: center;
+    vertical-align: top;
 }
 
 .message {
     border-style: solid;
     border-radius: 20px;
-    padding: 10px;
-    max-width: 300px;
+    padding: 10px 10px 10px 10px;
+    max-width: 400px;
     display: inline-block;
     vertical-align: bottom;
+    word-wrap: break-word;
 }
 
-.message-content {
+/*.message:before{
+    content: "\00a0";
+    display: inline-block;
+    position: relative;
     border-style: solid;
-}
+    width: 0;
+    height: 0;
+    border-width: 10px 20px 10px 0px;
+    border-color: transparent #000 transparent #000;
+    left: -30px;
+}*/
+
+/*.message-content {
+    border-style: solid;
+}*/
