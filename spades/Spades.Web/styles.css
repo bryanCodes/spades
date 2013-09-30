@@ -18,10 +18,14 @@
     display: none;
 }
 
-#chat-window{
+#chat-window {
     border-style: solid;
     height: 300px;
     overflow-y: auto;
+}
+
+#input-message {
+    width: 500px;
 }
 
 /*message specific styles*/
@@ -51,7 +55,7 @@
     word-wrap: break-word;
 }
 
-/*.message:before{
+.user-info:after {
     content: "\00a0";
     display: inline-block;
     position: relative;
@@ -60,8 +64,7 @@
     height: 0;
     border-width: 10px 20px 10px 0px;
     border-color: transparent #000 transparent #000;
-    left: -30px;
-}*/
+}
 
 /*.message-content {
     border-style: solid;
