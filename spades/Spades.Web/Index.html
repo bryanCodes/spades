@@ -11,7 +11,7 @@
     <script src="Scripts/index.js"></script>
 </head>
     <body>
-        <form id="login-form" data-bind="submit: enterRoom">
+        <form id="login-form" data-bind="submit: chatHub.signIn">
             <label>Choose Your Username:</label>
             <input type="text" id="input-username" data-bind="value: chatModel.username"/>
             <label>Your Email Address:</label>

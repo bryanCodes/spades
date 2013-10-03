@@ -3,6 +3,7 @@ var chatModel = {
     email: ko.observable(),
     message: ko.observable(),
     messages: ko.observableArray(),
+    users: ko.observableArray()
 };
 
 var chatHub = (function () {
@@ -16,20 +17,31 @@ var chatHub = (function () {
 
     };
     
+    client.syncUsers = function(users) {
+        chatModel.users(users);
+    };
+
+    client.signIn = function(username) {
+        $("#login-form").fadeOut(400, function () {
+            $("#chat-area").fadeIn();
+            $("#input-message").focus();
+        });
+    };
+
+    client.newUser = function(username) {
+        chatModel.users.push({ username: username });
+    };
+    
     return {
         send: function() {
             server.send(chatModel.username(), chatModel.message(), chatModel.email());
             chatModel.message('');
+        },
+        signIn: function() {
+            server.signIn(chatModel.username());
         }
     };
 })();
-
-function enterRoom() {
-    $("#login-form").fadeOut(400, function () {
-         $("#chat-area").fadeIn();
-         $("#input-message").focus();
-    });
-}
 
 //page initialization
 $(document).ready(function() {
