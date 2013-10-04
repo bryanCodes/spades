@@ -1,22 +1,19 @@
-var chatModel = (function () {
-    var model = {};
+var chatModel = new (function () {
+    var self = this;
     
-    model.curUser = {
+    self.curUser = {
         username: ko.observable(),
         email: ko.observable(),
-        gravatarHash: ko.observable()
+        gravatarHash: ko.observable(),
     };
     
-    model.message = {
-        user: model.curUser,
+    self.message = {
+        user: self.curUser,
         messageText: ko.observable()
     };
 
-    model.messages = ko.observableArray();
-    model.users = ko.observableArray();
-
-    //ko.applyBindings(model);
-    return model;
+    self.messages = ko.observableArray();
+    self.users = ko.observableArray();
 })();
 
 var chatHub = (function () {
