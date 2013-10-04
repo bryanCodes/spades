@@ -16,16 +16,16 @@ namespace Spades.Hubs
 
         public void SignIn(User user)
         {
+            user.GravatrHash = HashHelper.Md5((user.Email ?? "unknown").ToLower()).ToLower();
             Users.Add(user);
             Clients.Caller.syncUsers(Users);
             Clients.Others.newUser(user);
-            Clients.Caller.signIn();
+            Clients.Caller.signIn(user.GravatrHash);
         }
 
-        public void Send(string username, string message, string email)
+        public void Send(Message message)
         {
-            var emailHash = HashHelper.Md5((email ?? "unknown").ToLower()).ToLower();
-            Clients.All.addMessage(username ?? "unknown", message, emailHash);
+            Clients.All.addMessage(message);
         }
     }
 }

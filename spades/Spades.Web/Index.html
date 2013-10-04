@@ -10,32 +10,32 @@
     <script src="/Spades/signalr/hubs"></script>
     <script src="Scripts/index.js"></script>
 </head>
-    <body>
-        <form id="login-form" data-bind="submit: chatHub.signIn">
-            <label>Choose Your Username:</label>
-            <input type="text" id="input-username" data-bind="value: chatModel.curUser.username"/>
-            <label>Your Email Address:</label>
-            <input type="text" id="input-email" data-bind="value: chatModel.curUser.email"/>
-            <input type="submit" value="Enter"/>
-        </form>
+<body>
+    <form id="login-form" data-bind="submit: chatHub.signIn">
+        <label>Choose Your Username:</label>
+        <input type="text" id="input-username" data-bind="value: chatModel.curUser.username"/>
+        <label>Your Email Address:</label>
+        <input type="text" id="input-email" data-bind="value: chatModel.curUser.email"/>
+        <input type="submit" value="Enter"/>
+    </form>
     
-        <div id="chat-area">
-            <div id="chat-window">
-                <div data-bind="foreach: chatModel.messages">
-                    <div class="message-content">
-                        <div class="user-info">
-                            <div class="username" data-bind="text: username + ':'"></div>
-                            <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + emailHash + '?s=50' }"/>
-                        </div>
-                        <span class="message" data-bind="text: message"></span>
+    <div id="chat-area">
+        <div id="chat-window">
+            <div data-bind="foreach: chatModel.messages">
+                <div class="message-content">
+                    <div class="user-info">
+                        <div class="username" data-bind="text: user.username + ':'"></div>
+                        <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + user.gravatarHash + '?s=50' }"/>
                     </div>
+                    <span class="message" data-bind="text: messageText"></span>
                 </div>
             </div>
-
-            <form data-bind="submit: chatHub.send">
-                <input type="text" id="input-message" data-bind="value: chatModel.message"/>
-                <input type="submit" value="Send"/>
-            </form>
         </div>
-    </body>
+
+        <form data-bind="submit: chatHub.send">
+            <input type="text" id="input-message" data-bind="value: chatModel.message.messageText"/>
+            <input type="submit" value="Send"/>
+        </form>
+    </div>
+</body>
 </html>
