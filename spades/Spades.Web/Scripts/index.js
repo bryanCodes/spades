@@ -21,15 +21,15 @@ var chatHub = (function () {
         chatModel.users(users);
     };
 
-    client.signIn = function(username) {
+    client.signIn = function() {
         $("#login-form").fadeOut(400, function () {
             $("#chat-area").fadeIn();
             $("#input-message").focus();
         });
     };
 
-    client.newUser = function(username) {
-        chatModel.users.push({ username: username });
+    client.newUser = function(user) {
+        chatModel.users.push(user);
     };
     
     return {
@@ -38,7 +38,7 @@ var chatHub = (function () {
             chatModel.message('');
         },
         signIn: function() {
-            server.signIn(chatModel.username());
+            server.signIn({ username: chatModel.username() });
         }
     };
 })();

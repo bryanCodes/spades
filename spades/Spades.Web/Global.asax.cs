@@ -9,6 +9,7 @@ namespace Spades
         protected void Application_Start(object sender, EventArgs e)
         {
             RouteTable.Routes.MapHubs();
+            var application = this.Context.ApplicationInstance;
         }
 
         protected void Session_Start(object sender, EventArgs e)

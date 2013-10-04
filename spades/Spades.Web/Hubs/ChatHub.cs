@@ -1,33 +1,25 @@
 ﻿using System.Collections.Generic;
-using System.Web;
-using System.Web.Caching;
 using Microsoft.AspNet.SignalR;
 using Spades.App.Utilities;
+using Spades.Models;
 
 namespace Spades.Hubs
 {
     public class ChatHub : Hub
     {
-        private const string UserCacheKey = "users";
+        private static readonly List<User> Users;
 
-        public void SignIn(string username)
+        static ChatHub()
         {
-            var cache = HttpContext.Current.Application;
-            //var users = HttpContext.Current.ApplicationInstance.Context.Cache[UserCacheKey] as List<string>;
-            var users = cache[UserCacheKey] as List<string>; 
-            if (users == null)
-            {
-                cache[UserCacheKey] = new List<string> { username };
-            }
-            else
-            {
-                users.Add(username);
-                cache[UserCacheKey] = users;
-            }
+            Users = new List<User>();
+        }
 
-            Clients.Caller.syncUsers(users);
-            Clients.Others.newUser(username);
-            Clients.Caller.signIn(username);
+        public void SignIn(User user)
+        {
+            Users.Add(user);
+            Clients.Caller.syncUsers(Users);
+            Clients.Others.newUser(user);
+            Clients.Caller.signIn();
         }
 
         public void Send(string username, string message, string email)
