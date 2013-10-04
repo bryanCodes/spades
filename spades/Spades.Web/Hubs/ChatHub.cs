@@ -12,16 +12,17 @@ namespace Spades.Hubs
 
         public void SignIn(string username)
         {
-            var users = HttpContext.Current.ApplicationInstance.Context.Cache[UserCacheKey] as List<string>;
-             
+            var cache = HttpContext.Current.Application;
+            //var users = HttpContext.Current.ApplicationInstance.Context.Cache[UserCacheKey] as List<string>;
+            var users = cache[UserCacheKey] as List<string>; 
             if (users == null)
             {
-                HttpContext.Current.ApplicationInstance.Context.Cache[UserCacheKey] = new List<string> { username };
+                cache[UserCacheKey] = new List<string> { username };
             }
             else
             {
                 users.Add(username);
-                HttpContext.Current.ApplicationInstance.Context.Cache[UserCacheKey] = users;
+                cache[UserCacheKey] = users;
             }
 
             Clients.Caller.syncUsers(users);
