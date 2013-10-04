@@ -1,6 +1,10 @@
 var chatModel = {
-    username: ko.observable(),
-    email: ko.observable(),
+    curUser: {
+        username: ko.observable(),
+        email: ko.observable()
+    },
+    //username: ko.observable(),
+    //email: ko.observable(),
     message: ko.observable(),
     messages: ko.observableArray(),
     users: ko.observableArray()
@@ -38,7 +42,7 @@ var chatHub = (function () {
             chatModel.message('');
         },
         signIn: function() {
-            server.signIn({ username: chatModel.username() });
+            server.signIn(chatModel.curUser);
         }
     };
 })();

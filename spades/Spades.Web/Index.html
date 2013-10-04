@@ -13,9 +13,9 @@
     <body>
         <form id="login-form" data-bind="submit: chatHub.signIn">
             <label>Choose Your Username:</label>
-            <input type="text" id="input-username" data-bind="value: chatModel.username"/>
+            <input type="text" id="input-username" data-bind="value: chatModel.curUser.username"/>
             <label>Your Email Address:</label>
-            <input type="text" id="input-email" data-bind="value: chatModel.email"/>
+            <input type="text" id="input-email" data-bind="value: chatModel.curUser.email"/>
             <input type="submit" value="Enter"/>
         </form>
     
