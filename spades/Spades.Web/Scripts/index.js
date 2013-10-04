@@ -15,6 +15,7 @@ var chatModel = (function () {
     model.messages = ko.observableArray();
     model.users = ko.observableArray();
 
+    //ko.applyBindings(model);
     return model;
 })();
 
@@ -48,7 +49,7 @@ var chatHub = (function () {
     
     return {
         send: function() {
-            server.send(chatModel.message);
+            server.send({ user: chatModel.curUser, messageText: chatModel.message.messageText() });
             chatModel.message.messageText('');
         },
         signIn: function() {
