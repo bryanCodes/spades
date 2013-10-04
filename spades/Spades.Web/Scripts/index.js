@@ -1,19 +1,22 @@
-var chatModel = function () {
-    var self = this;
-    self.curUser = function() {
-        this.username = ko.observable();
-        this.email = ko.observable();
-        this.gravatarHash = ko.observable();
+var chatModel = (function () {
+    var model = {};
+    
+    model.curUser = {
+        username: ko.observable(),
+        email: ko.observable(),
+        gravatarHash: ko.observable()
     };
     
-    self.message = function () {
-        this.user = self.curUser;
-        this.messageText = ko.observable();
+    model.message = {
+        user: model.curUser,
+        messageText: ko.observable()
     };
 
-    self.messages = ko.observableArray();
-    self.users = ko.observableArray();
-};
+    model.messages = ko.observableArray();
+    model.users = ko.observableArray();
+
+    return model;
+})();
 
 var chatHub = (function () {
     var server = $.connection.chatHub.server;
