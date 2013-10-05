@@ -43,6 +43,10 @@ var chatHub = (function () {
     client.newUser = function(user) {
         chatModel.users.push(user);
     };
+
+    client.removeUser = function(user) {
+        chatModel.users.remove(user);
+    };
     
     return {
         send: function() {

@@ -1,4 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.ModelBinding;
 using Microsoft.AspNet.SignalR;
 using Spades.App.Utilities;
 using Spades.Models;
@@ -17,15 +22,35 @@ namespace Spades.Hubs
         public void SignIn(User user)
         {
             user.GravatarHash = HashHelper.Md5((user.Email ?? "unknown").ToLower()).ToLower();
+            user.ConnectionId = Context.ConnectionId;
+            HttpContext.Current.Session["connectionId"] = Context.ConnectionId;
+
             Users.Add(user);
             Clients.Caller.syncUsers(Users);
             Clients.Others.newUser(user);
             Clients.Caller.signIn(user.GravatarHash);
         }
 
+        public void SignOut(User user)
+        {
+            Users.Remove(user);
+            Clients.All.removeUesr(user);
+            //Clients.All.syncUsers(Users);
+        }
+
+        public void SignOut(string connectionId)
+        {
+            SignOut(Users.Single(x => x.ConnectionId == connectionId));
+        }
+
         public void Send(Message message)
         {
             Clients.All.addMessage(message);
+        }
+
+        public override Task OnDisconnected()
+        {
+            return base.OnDisconnected();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Routing;
+using Spades.Hubs;
 
 namespace Spades
 {
