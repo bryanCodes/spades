@@ -61,6 +61,10 @@ var chatHub = (function () {
     };
 })();
 
+function getGravatarUrl(gravatarHash, size) {
+    return ["http://www.gravatar.com/avatar/", gravatarHash, "?s=", size].join("");
+}
+
 //page initialization
 $(document).ready(function() {
     $.connection.hub.start();
