@@ -25,6 +25,7 @@
             </div>
         </div>
         <div id="users" data-bind="foreach: chatModel.users">
+            <img data-bind="attr: { src: getGravatarUrl(GravatarHash, 40) }"/>
             <div data-bind="text: Username"></div>
         </div>
 
@@ -34,11 +35,12 @@
         </form>
     </div>
     
+    <!--ko templates start here -->
     <script id="message-template" type="text/html">
     <div class="message-content">
         <div class="user-info">
             <div class="username" data-bind="text: User.Username + ':'"></div>
-            <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + User.GravatarHash + '?s=50' }"/>
+            <img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>
         </div>
         <span class="message" data-bind="text: MessageText"></span>
     </div>
