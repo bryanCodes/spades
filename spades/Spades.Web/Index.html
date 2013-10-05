@@ -9,6 +9,7 @@
     <script src="Scripts/knockout-2.3.0.debug.js"></script>
     <script src="/Spades/signalr/hubs"></script>
     <script src="Scripts/index.js"></script>
+    <script src="Scripts/KoTemplates/ChatTemplates.js"></script>
 </head>
 <body>
     <form id="login-form" data-bind="submit: chatHub.signIn">
@@ -21,15 +22,11 @@
     
     <div id="chat-area">
         <div id="chat-window">
-            <div data-bind="foreach: chatModel.messages">
-                <div class="message-content">
-                    <div class="user-info">
-                        <div class="username" data-bind="text: User.Username + ':'"></div>
-                        <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + User.GravatarHash + '?s=50' }"/>
-                    </div>
-                    <span class="message" data-bind="text: MessageText"></span>
-                </div>
+            <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
             </div>
+        </div>
+        <div id="users" data-bind="foreach: chatModel.users">
+            <span data-bind="text: Username"></span>
         </div>
 
         <form data-bind="submit: chatHub.send">
@@ -37,5 +34,15 @@
             <input type="submit" value="Send"/>
         </form>
     </div>
+    
+    <script id="message-template" type="text/html">
+    <div class="message-content">
+        <div class="user-info">
+            <div class="username" data-bind="text: User.Username + ':'"></div>
+            <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + User.GravatarHash + '?s=50' }"/>
+        </div>
+        <span class="message" data-bind="text: MessageText"></span>
+    </div>
+    </script>
 </body>
 </html>
