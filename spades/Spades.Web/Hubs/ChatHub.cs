@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.ModelBinding;
@@ -23,7 +22,6 @@ namespace Spades.Hubs
         {
             user.GravatarHash = HashHelper.Md5((user.Email ?? "unknown").ToLower()).ToLower();
             user.ConnectionId = Context.ConnectionId;
-            HttpContext.Current.Session["connectionId"] = Context.ConnectionId;
 
             Users.Add(user);
             Clients.Caller.syncUsers(Users);
@@ -35,7 +33,6 @@ namespace Spades.Hubs
         {
             Users.Remove(user);
             Clients.All.removeUesr(user);
-            //Clients.All.syncUsers(Users);
         }
 
         public void SignOut(string connectionId)
@@ -50,6 +47,7 @@ namespace Spades.Hubs
 
         public override Task OnDisconnected()
         {
+            SignOut(Context.ConnectionId);
             return base.OnDisconnected();
         }
     }
