@@ -6,6 +6,6 @@
 
         public string Email { get; set; }
 
-        public string GravatrHash { get; set; }
+        public string GravatarHash { get; set; }
     }
 }

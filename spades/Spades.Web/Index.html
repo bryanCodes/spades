@@ -24,10 +24,10 @@
             <div data-bind="foreach: chatModel.messages">
                 <div class="message-content">
                     <div class="user-info">
-                        <div class="username" data-bind="text: user.username + ':'"></div>
-                        <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + user.gravatarHash + '?s=50' }"/>
+                        <div class="username" data-bind="text: User.Username + ':'"></div>
+                        <img data-bind="attr: { src: 'http://www.gravatar.com/avatar/' + User.GravatarHash + '?s=50' }"/>
                     </div>
-                    <span class="message" data-bind="text: messageText"></span>
+                    <span class="message" data-bind="text: MessageText"></span>
                 </div>
             </div>
         </div>

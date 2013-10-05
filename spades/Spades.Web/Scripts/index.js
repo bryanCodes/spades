@@ -46,11 +46,11 @@ var chatHub = (function () {
     
     return {
         send: function() {
-            server.send({ user: chatModel.curUser, messageText: chatModel.message.messageText() });
+            server.send(ko.toJS(chatModel.message));
             chatModel.message.messageText('');
         },
         signIn: function() {
-            server.signIn(chatModel.curUser);
+            server.signIn(ko.toJS(chatModel.curUser));
         }
     };
 })();
