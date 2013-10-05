@@ -32,7 +32,7 @@ namespace Spades.Hubs
         public void SignOut(User user)
         {
             Users.Remove(user);
-            Clients.All.removeUesr(user);
+            Clients.All.removeUser(user);
         }
 
         public void SignOut(string connectionId)

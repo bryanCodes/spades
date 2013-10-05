@@ -45,7 +45,9 @@ var chatHub = (function () {
     };
 
     client.removeUser = function(user) {
-        chatModel.users.remove(user);
+        chatModel.users.remove(function(item) {
+            return item.ConnectionId === user.ConnectionId;
+        });
     };
     
     return {
