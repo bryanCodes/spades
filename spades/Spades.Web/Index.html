@@ -9,7 +9,6 @@
     <script src="Scripts/knockout-2.3.0.debug.js"></script>
     <script src="/Spades/signalr/hubs"></script>
     <script src="Scripts/index.js"></script>
-    <script src="Scripts/KoTemplates/ChatTemplates.js"></script>
 </head>
 <body>
     <form id="login-form" data-bind="submit: chatHub.signIn">
@@ -26,7 +25,7 @@
             </div>
         </div>
         <div id="users" data-bind="foreach: chatModel.users">
-            <span data-bind="text: Username"></span>
+            <div data-bind="text: Username"></div>
         </div>
 
         <form data-bind="submit: chatHub.send">
