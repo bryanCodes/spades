@@ -63,6 +63,11 @@
     display: inline-block;
     vertical-align: top;
 }
+
+#users img, #users div {
+    display: inline-block;
+}
+
 /*.user-info:after {
     content: "\00a0";
     display: inline-block;
