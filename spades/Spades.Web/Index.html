@@ -35,7 +35,7 @@
     
     <!--ko templates start here -->
     <script id="message-template" type="text/html">
-        <div class="message-content">
+        <div class="message-content" data-bind="css: { alt: $index() % 2 }">
             <div class="user-info">
                 <div class="username" data-bind="text: User.Username + ':'"></div>
                 <img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>

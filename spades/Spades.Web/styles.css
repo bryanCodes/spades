@@ -41,7 +41,7 @@
 
 .user-info {
     /*border-style: solid;*/
-    width: 75px;
+    width: 15%;
     display: inline-block;
     text-align: center;
     vertical-align: top;
@@ -92,6 +92,10 @@
     border-color: transparent #000 transparent #000;
 }*/
 
-/*.message-content {
-    border-style: solid;
-}*/
+.message-content {
+    /*border-style: solid;*/
+}
+
+.alt {
+    background-color: #DCDCDC;
+}
