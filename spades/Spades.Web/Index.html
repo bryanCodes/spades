@@ -24,9 +24,7 @@
             <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
             </div>
         </div>
-        <div id="users" data-bind="foreach: chatModel.users">
-            <img data-bind="attr: { src: getGravatarUrl(GravatarHash, 40) }"/>
-            <div data-bind="text: Username"></div>
+        <div id="user-list" data-bind="template: { name: 'user-template', foreach: chatModel.users }">
         </div>
 
         <form data-bind="submit: chatHub.send">
@@ -37,13 +35,20 @@
     
     <!--ko templates start here -->
     <script id="message-template" type="text/html">
-    <div class="message-content">
-        <div class="user-info">
-            <div class="username" data-bind="text: User.Username + ':'"></div>
-            <img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>
+        <div class="message-content">
+            <div class="user-info">
+                <div class="username" data-bind="text: User.Username + ':'"></div>
+                <img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>
+            </div>
+            <span class="message" data-bind="text: MessageText"></span>
         </div>
-        <span class="message" data-bind="text: MessageText"></span>
-    </div>
+    </script>
+    
+    <script id="user-template" type="text/html">
+        <div class="user">
+            <img alt="user image" data-bind="attr: { src: getGravatarUrl(GravatarHash, 40) }"/>
+            <div data-bind="text: Username"></div>
+        </div>
     </script>
 </body>
 </html>

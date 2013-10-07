@@ -57,15 +57,26 @@
     word-wrap: break-word;
 }
 
-#users {
+#user-list {
     border-style: solid;
     width: 20%;
     display: inline-block;
     vertical-align: top;
 }
 
-#users img, #users div {
+.user {
+    border-style: solid;
+    height: 40px;
+}
+
+.user img {
     display: inline-block;
+}
+
+.user div {
+    display: inline-block;
+    vertical-align: top;
+    padding: 10px 0px 0px 0px;
 }
 
 /*.user-info:after {
