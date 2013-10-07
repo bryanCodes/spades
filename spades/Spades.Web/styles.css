@@ -62,6 +62,8 @@
     width: 20%;
     display: inline-block;
     vertical-align: top;
+    height: 300px;
+    overflow-y: auto;
 }
 
 .user {
