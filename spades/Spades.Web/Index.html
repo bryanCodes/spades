@@ -19,23 +19,23 @@
         <input type="submit" value="Enter"/>
     </form>
     
-    <div id ="game-area" data-bind="foreach: gameModel.players">
-        <div class="player" data-bind="attr: { id: 'player-' + ($index() + 1) }">
-            hello
+    <div id="main-container">
+        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: gameModel.players }">
+            
         </div>
-    </div>
-    <div id="chat-area">
-        <div id="chat-window">
-            <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
+        <div id="chat-area">
+            <div id="chat-window">
+                <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
+                </div>
             </div>
-        </div>
-        <div id="user-list" data-bind="template: { name: 'user-template', foreach: chatModel.users }">
-        </div>
+            <div id="user-list" data-bind="template: { name: 'user-template', foreach: chatModel.users }">
+            </div>
 
-        <form data-bind="submit: chatHub.send">
-            <input type="text" id="input-message" data-bind="value: chatModel.message.messageText"/>
-            <input type="submit" value="Send"/>
-        </form>
+            <form data-bind="submit: chatHub.send">
+                <input type="text" id="input-message" data-bind="value: chatModel.message.messageText"/>
+                <input type="submit" value="Send"/>
+            </form>
+        </div>
     </div>
     
     <!--ko templates start here -->
@@ -53,6 +53,12 @@
         <div class="user">
             <img alt="user image" data-bind="attr: { src: getGravatarUrl(GravatarHash, 40) }"/>
             <div data-bind="text: Username"></div>
+        </div>
+    </script>
+    
+    <script id="player-template" type="text/html">
+        <div class="player" data-bind="attr: { id: 'player-' + ($index() + 1) }">
+                hello
         </div>
     </script>
 </body>

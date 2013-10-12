@@ -1,5 +1,8 @@
-body{
+body {
     padding: 2%;
+}
+
+#main-container {   
 }
 
 /*login form styles*/
@@ -18,16 +21,11 @@ body{
 }
 
 /*chat form styles*/
-#chat-area {
-    display: none;
-    align: center;
-}
-
 #chat-window {
     border-style: solid;
     height: 300px;
     overflow-y: auto;
-    width: 75%;
+    width: 77%;
     display: inline-block;
 }
 
@@ -107,11 +105,26 @@ body{
 
 /*game area*/
 #game-area {
-    display: none;
     border-style: solid;
     height: 400px;
 }
 
 .player {
     border-style: solid;
+}
+
+#player-1{
+    color: red;
+}
+
+#player-2{
+    color: black;
+}
+
+#player-3{
+    color: blue;
+}
+
+#player-4{
+    color: orange;
 }
