@@ -67,10 +67,10 @@ var gameModel = new (function() {
     var self = this;
 
     self.players = ko.observableArray([
-        { Id: 0, user: ko.observable() },
-        { Id: 1, user: ko.observable() },
-        { Id: 2, user: ko.observable() },
-        { Id: 3, user: ko.observable() }
+        { Id: 0, user: ko.observable({}) },
+        { Id: 1, user: ko.observable({}) },
+        { Id: 2, user: ko.observable({}) },
+        { Id: 3, user: ko.observable({}) },
     ]);
 })();
 

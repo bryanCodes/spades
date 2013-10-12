@@ -39,11 +39,13 @@
     <!--ko templates start here -->
     <script id="message-template" type="text/html">
         <div class="message-content" data-bind="css: { alt: $index() % 2 }">
-            <div class="user-info">
-                <div class="username" data-bind="text: User.Username + ':'"></div>
-                <img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>
-            </div>
-            <span class="message" data-bind="text: MessageText"></span>
+			<div class="avatar-container">
+				<img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>
+			</div>	
+			<div class="message-container">
+				<div class="username" data-bind="text: User.Username + ':'"></div>
+				<div class="message" data-bind="text: MessageText"></div>
+			</div>
         </div>
     </script>
     
@@ -55,10 +57,10 @@
     </script>
     
     <script id="player-template" type="text/html">
-        <div class="player" data-bind="attr: { id: 'player-' + $index() }">
-            <div data-bind="text: 'player ' + $index()"></div>
-            <div data-bind="text: user.Username"></div>
-            <form data-bind="visible: !user.Username, submit: function () { gameHub.takeSeat($index()); }">
+        <div class="player" data-bind="attr: { id: 'player-' + Id }">
+            <div data-bind="text: 'player ' + Id"></div>
+            <div data-bind="text: user().Username"></div>
+            <form data-bind="visible: !(user().Username), submit: function () { gameHub.takeSeat(Id); }">
                 <input type="submit" value="Sit"/>
             </form>
         </div>
