@@ -27,20 +27,16 @@ namespace Spades.Hubs
             Clients.Caller.signIn(user.GravatarHash);
         }
 
-        public void SignOut(User user)
+        public void Send(Message message)
         {
-            Users.Remove(user);
-            Clients.All.removeUser(user);
+            Clients.All.addMessage(message);
         }
 
         public void SignOut(string connectionId)
         {
-            SignOut(Users.Single(x => x.ConnectionId == connectionId));
-        }
-
-        public void Send(Message message)
-        {
-            Clients.All.addMessage(message);
+            var user = Users.Single(u => u.ConnectionId == connectionId);
+            Users.Remove(user);
+            Clients.All.removeUser(user);
         }
 
         public override Task OnDisconnected()
