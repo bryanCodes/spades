@@ -24,7 +24,7 @@ namespace Spades.Hubs
             Users.Add(user);
             Clients.Caller.syncUsers(Users);
             Clients.Others.newUser(user);
-            Clients.Caller.signIn(user.GravatarHash);
+            Clients.Caller.signIn(user);
         }
 
         public void Send(Message message)

@@ -5,6 +5,7 @@ var chatModel = new (function () {
         username: ko.observable(),
         email: ko.observable(),
         gravatarHash: ko.observable(),
+        connectionId: ko.observable()
     };
     
     self.message = {
@@ -31,13 +32,14 @@ var chatHub = (function () {
         chatModel.users(users);
     };
 
-    client.signIn = function(gravatarHash) {
+    client.signIn = function(user) {
         $("#login-form").fadeOut(400, function () {
             $("#main-container").fadeIn();
             $("#input-message").focus();
         });
         
-        chatModel.curUser.gravatarHash(gravatarHash);
+        chatModel.curUser.gravatarHash(user.GravatarHash);
+        chatModel.curUser.connectionId(user.ConnectionId);
     };
 
     client.newUser = function(user) {
@@ -65,10 +67,10 @@ var gameModel = new (function() {
     var self = this;
 
     self.players = ko.observableArray([
-        { Id: 0, user: null },
-        { Id: 1, user: null },
-        { Id: 2, user: null },
-        { Id: 3, user: null }
+        { Id: 0, user: ko.observable() },
+        { Id: 1, user: ko.observable() },
+        { Id: 2, user: ko.observable() },
+        { Id: 3, user: ko.observable() }
     ]);
 })();
 
@@ -78,12 +80,12 @@ var gameHub = (function () {
     self.client = $.connection.gameHub.client;
 
     self.client.takeSeat = function(user, seatId) {
-        gameModel.players[seatId].user = user;
+        gameModel.players()[seatId].user(user);
     };
     
     return {        
-        takeSeat: function(seatId) {
-            self.server.takeSeat(ko.toJS(chatModel.curUser), seatId);
+        takeSeat: function(data) {
+            self.server.takeSeat(ko.toJS(chatModel.curUser), data);
         }
     };
 })();

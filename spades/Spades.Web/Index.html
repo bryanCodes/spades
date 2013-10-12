@@ -57,7 +57,8 @@
     <script id="player-template" type="text/html">
         <div class="player" data-bind="attr: { id: 'player-' + $index() }">
             <div data-bind="text: 'player ' + $index()"></div>
-            <form data-bind="visible: (user === null), submit: gameHub.takeSeat.bind($index())">
+            <div data-bind="text: user.Username"></div>
+            <form data-bind="visible: !user.Username, submit: function () { gameHub.takeSeat($index()); }">
                 <input type="submit" value="Sit"/>
             </form>
         </div>
