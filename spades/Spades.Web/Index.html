@@ -58,7 +58,10 @@
     
     <script id="player-template" type="text/html">
         <div class="player" data-bind="attr: { id: 'player-' + ($index() + 1) }">
-                hello
+            <div data-bind="text: 'player ' + ($index() + 1)"></div>
+            <form>
+                <input type="submit" value="Sit"/>
+            </form>
         </div>
     </script>
 </body>

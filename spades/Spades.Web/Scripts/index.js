@@ -44,8 +44,7 @@ var chatHub = (function () {
 
     client.signIn = function(gravatarHash) {
         $("#login-form").fadeOut(400, function () {
-            $("#game-area").fadeIn();
-            $("#chat-area").fadeIn();
+            $("#main-container").fadeIn();
             $("#input-message").focus();
         });
         
