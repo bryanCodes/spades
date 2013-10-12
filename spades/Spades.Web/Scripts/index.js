@@ -16,6 +16,17 @@ var chatModel = new (function () {
     self.users = ko.observableArray();
 })();
 
+var gameModel = new (function() {
+    var self = this;
+
+    self.players = ko.observableArray([
+        { Id: 1, user: null },
+        { Id: 2, user: null },
+        { Id: 3, user: null },
+        { Id: 4, user: null }
+    ]);
+})();
+
 var chatHub = (function () {
     var server = $.connection.chatHub.server;
     var client = $.connection.chatHub.client;
@@ -33,6 +44,7 @@ var chatHub = (function () {
 
     client.signIn = function(gravatarHash) {
         $("#login-form").fadeOut(400, function () {
+            $("#game-area").fadeIn();
             $("#chat-area").fadeIn();
             $("#input-message").focus();
         });
@@ -69,5 +81,6 @@ function getGravatarUrl(gravatarHash, size) {
 $(document).ready(function() {
     $.connection.hub.start();
     ko.applyBindings(chatModel);
+    ko.applyBindings(gameModel);
     $("#input-username").focus();
 });

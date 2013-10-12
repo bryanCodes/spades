@@ -19,6 +19,11 @@
         <input type="submit" value="Enter"/>
     </form>
     
+    <div id ="game-area" data-bind="foreach: gameModel.players">
+        <div class="player" data-bind="attr: { id: 'player-' + ($index() + 1) }">
+            hello
+        </div>
+    </div>
     <div id="chat-area">
         <div id="chat-window">
             <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">

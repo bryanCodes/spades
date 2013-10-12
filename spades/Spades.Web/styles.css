@@ -1,3 +1,7 @@
+body{
+    padding: 2%;
+}
+
 /*login form styles*/
 #login-form {
     border-style: solid;
@@ -16,6 +20,7 @@
 /*chat form styles*/
 #chat-area {
     display: none;
+    align: center;
 }
 
 #chat-window {
@@ -98,4 +103,15 @@
 
 .alt {
     background-color: #DCDCDC;
+}
+
+/*game area*/
+#game-area {
+    display: none;
+    border-style: solid;
+    height: 400px;
+}
+
+.player {
+    border-style: solid;
 }
