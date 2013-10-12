@@ -30,6 +30,7 @@ var chatHub = (function () {
     
     client.syncUsers = function(users) {
         chatModel.users(users);
+        gameHub.syncGame();
     };
 
     client.signIn = function(user) {
@@ -70,7 +71,7 @@ var gameModel = new (function() {
         { Id: 0, user: ko.observable({}) },
         { Id: 1, user: ko.observable({}) },
         { Id: 2, user: ko.observable({}) },
-        { Id: 3, user: ko.observable({}) },
+        { Id: 3, user: ko.observable({}) }
     ]);
 })();
 
@@ -79,11 +80,23 @@ var gameHub = (function () {
     self.server = $.connection.gameHub.server;
     self.client = $.connection.gameHub.client;
 
-    self.client.takeSeat = function(user, seatId) {
+    self.client.takeSeat = function (user, seatId) {
+        self.takeSeat(user, seatId);
+    };
+
+    self.client.syncGame = function(game) {
+        //sync players
+        game.Players.forEach(self.takeSeat);
+    };
+
+    self.takeSeat = function(user, seatId) {
         gameModel.players()[seatId].user(user);
     };
     
-    return {        
+    return {
+        syncGame: function() {
+            self.server.syncGame();
+        },
         takeSeat: function(data) {
             self.server.takeSeat(ko.toJS(chatModel.curUser), data);
         }
