@@ -16,17 +16,6 @@ var chatModel = new (function () {
     self.users = ko.observableArray();
 })();
 
-var gameModel = new (function() {
-    var self = this;
-
-    self.players = ko.observableArray([
-        { Id: 1, user: null },
-        { Id: 2, user: null },
-        { Id: 3, user: null },
-        { Id: 4, user: null }
-    ]);
-})();
-
 var chatHub = (function () {
     var server = $.connection.chatHub.server;
     var client = $.connection.chatHub.client;
@@ -68,6 +57,33 @@ var chatHub = (function () {
         },
         signIn: function() {
             server.signIn(ko.toJS(chatModel.curUser));
+        }
+    };
+})();
+
+var gameModel = new (function() {
+    var self = this;
+
+    self.players = ko.observableArray([
+        { Id: 0, user: null },
+        { Id: 1, user: null },
+        { Id: 2, user: null },
+        { Id: 3, user: null }
+    ]);
+})();
+
+var gameHub = (function () {
+    var self = this;
+    self.server = $.connection.gameHub.server;
+    self.client = $.connection.gameHub.client;
+
+    self.client.takeSeat = function(user, seatId) {
+        gameModel.players[seatId].user = user;
+    };
+    
+    return {        
+        takeSeat: function(seatId) {
+            self.server.takeSeat(ko.toJS(chatModel.curUser), seatId);
         }
     };
 })();

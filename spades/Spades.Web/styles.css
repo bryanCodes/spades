@@ -114,18 +114,18 @@ body {
     border-style: solid;
 }
 
-#player-1{
+#player-0{
     color: red;
 }
 
-#player-2{
+#player-1{
     color: black;
 }
 
-#player-3{
+#player-2{
     color: blue;
 }
 
-#player-4{
+#player-3{
     color: orange;
 }
