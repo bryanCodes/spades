@@ -79,7 +79,6 @@ function getGravatarUrl(gravatarHash, size) {
 //page initialization
 $(document).ready(function() {
     $.connection.hub.start();
-    ko.applyBindings(chatModel);
-    ko.applyBindings(gameModel);
+    ko.applyBindings();
     $("#input-username").focus();
 });

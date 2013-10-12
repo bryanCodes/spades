@@ -20,9 +20,7 @@
     </form>
     
     <div id="main-container">
-        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: gameModel.players }">
-            
-        </div>
+        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: gameModel.players }"></div>
         <div id="chat-area">
             <div id="chat-window">
                 <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
@@ -59,7 +57,7 @@
     <script id="player-template" type="text/html">
         <div class="player" data-bind="attr: { id: 'player-' + ($index() + 1) }">
             <div data-bind="text: 'player ' + ($index() + 1)"></div>
-            <form>
+            <form data-bind="visible: (user === null)">
                 <input type="submit" value="Sit"/>
             </form>
         </div>
