@@ -34,7 +34,7 @@ var baseHub = new (function() {
     
     self.client.syncGame = function (game) {
         //sync players
-        game.Players.forEach(self.takeSeat);
+        game.Players.forEach(gameModel.takeSeat);
         
         //I swear this is going to do more things soon.
     };
@@ -111,11 +111,12 @@ var gameHub = (function () {
     var self = this;
     self.server = $.connection.gameHub.server;
     self.client = $.connection.gameHub.client;
+
+    self.client.takeSeat = function(user, seatId) {
+        gameModel.takeSeat(user, seatId);
+    };
     
     return {
-        syncGame: function() {
-            self.server.syncGame();
-        },
         takeSeat: function(data) {
             self.server.takeSeat(ko.toJS(chatModel.curUser), data);
         }

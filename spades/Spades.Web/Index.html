@@ -52,7 +52,7 @@
     
     <script id="user-template" type="text/html">
         <div class="user">
-            <img alt="user image" data-bind="attr: { src: getGravatarUrl(gravatarHash, 40) }"/>
+            <img alt="user image" data-bind="attr: { src: getGravatarUrl(gravatarHash(), 40) }"/>
             <div data-bind="text: username"></div>
         </div>
     </script>
