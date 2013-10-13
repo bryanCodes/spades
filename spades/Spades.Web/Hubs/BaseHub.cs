@@ -31,5 +31,9 @@ namespace Spades.Hubs
             Clients.Caller.signIn(user);
         }
 
+        public void SyncGame()
+        {
+            Clients.Caller.SyncGame(Game);
+        }
     }
 }

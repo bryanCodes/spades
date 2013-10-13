@@ -8,9 +8,25 @@ function User(username, email, gravatarHash, connectionId){
 
 var baseHub = new (function() {
     var self = this;
-
     self.server = $.connection.baseHub.server;
     self.client = $.connection.baseHub.client;
+    
+    client.syncUsers = function (users) {
+        users.forEach(function (obj) {
+            chatModel.users.push(new User(
+											obj.Username,
+											obj.Email,
+											obj.GravatarHash,
+											obj.ConnectionId
+										));
+        });
+        gameHub.syncGame();
+    };
+    
+    self.client.syncGame = function (game) {
+        //sync players
+        game.Players.forEach(self.takeSeat);
+    };
 
     return {        
         signIn: function () {
@@ -43,17 +59,6 @@ var chatHub = (function () {
         $chatWindow.scrollTop($chatWindow[0].scrollHeight);
     };
     
-    client.syncUsers = function(users) {
-        users.forEach(function(obj){
-			chatModel.users.push(new User(
-											obj.Username, 
-											obj.Email, 
-											obj.GravatarHash, 
-											obj.ConnectionId
-										));
-		});
-        gameHub.syncGame();
-    };
 
     client.signIn = function(user) {
         $("#login-form").fadeOut(400, function () {
@@ -101,11 +106,6 @@ var gameHub = (function () {
 
     self.client.takeSeat = function (user, seatId) {
         self.takeSeat(user, seatId);
-    };
-
-    self.client.syncGame = function(game) {
-        //sync players
-        game.Players.forEach(self.takeSeat);
     };
 
     self.takeSeat = function(user, seatId) {

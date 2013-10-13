@@ -9,10 +9,5 @@ namespace Spades.Hubs
             Game.Players[seatId] = user;
             Clients.All.TakeSeat(user, seatId);
         }
-
-        public void SyncGame()
-        {
-            Clients.Caller.SyncGame(Game);
-        }
     }
 }
