@@ -7,6 +7,7 @@
     <script src="Scripts/jquery-1.8.2.js"></script>
     <script src="Scripts/jquery.signalR-1.1.3.js"></script>
     <script src="Scripts/knockout-2.3.0.debug.js"></script>
+    <!-- ReSharper disable once Html.PathError -->
     <script src="/Spades/signalr/hubs"></script>
     <script src="Scripts/index.js"></script>
 </head>
@@ -60,7 +61,7 @@
         <div class="player" data-bind="attr: { id: 'player-' + Id }">
             <div data-bind="text: 'player ' + Id"></div>
             <div data-bind="text: user().Username"></div>
-            <form data-bind="visible: !(user().Username), submit: function () { baseHub.takeSeat(Id); }">
+            <form data-bind="visible: !(user().Username), submit: function () { gameHub.takeSeat(Id); }">
                 <input type="submit" value="Sit"/>
             </form>
         </div>

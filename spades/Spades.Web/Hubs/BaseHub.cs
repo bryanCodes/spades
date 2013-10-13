@@ -30,6 +30,7 @@ namespace Spades.Hubs
             Users.Add(user);
 
             Clients.Caller.syncUsers(Users);
+            Clients.Caller.syncGames(Game);
             Clients.Others.addUser(user);
             Clients.Caller.signIn(user);
         }

@@ -20,7 +20,6 @@ var baseHub = new (function() {
 											obj.ConnectionId
 										));
         });
-        //gameHub.syncGame();
     };
 
     self.client.addUser = function(user) {
@@ -36,16 +35,13 @@ var baseHub = new (function() {
     self.client.syncGame = function (game) {
         //sync players
         game.Players.forEach(self.takeSeat);
+        
+        //I swear this is going to do more things soon.
     };
-    
-    self.client.takeSeat = function (user, seatId) {
+
+    self.client.takeSeat = function(user, seatId) {
         self.takeSeat(user, seatId);
     };
-
-    self.takeSeat = function (user, seatId) {
-        gameModel.players()[seatId].user(user || {});
-    };
-
     
     self.client.signIn = function (user) {
         chatModel.curUser.gravatarHash(user.GravatarHash);
@@ -105,6 +101,10 @@ var gameModel = new (function() {
         { Id: 2, user: ko.observable({}) },
         { Id: 3, user: ko.observable({}) }
     ]);
+    
+    self.takeSeat = function (user, seatId) {
+        self.players()[seatId].user(user || {});
+    };
 })();
 
 var gameHub = (function () {
