@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
 using Spades.App.Utilities;
 using Spades.Models;
@@ -28,12 +30,25 @@ namespace Spades.Hubs
             Users.Add(user);
             Clients.Caller.syncUsers(Users);
             Clients.Others.newUser(user);
-            Clients.Caller.signIn(user);
+            Clients.Caller.signIn();
         }
 
         public void SyncGame()
         {
             Clients.Caller.SyncGame(Game);
+        }
+
+        private void SignOut(string connectionId)
+        {
+            var user = Users.Single(u => u.ConnectionId == connectionId);
+            Users.Remove(user);
+            Clients.All.removeUser(user);
+        }
+
+        public override Task OnDisconnected()
+        {
+            SignOut(Context.ConnectionId);
+            return base.OnDisconnected();
         }
     }
 }

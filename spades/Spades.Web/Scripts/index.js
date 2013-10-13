@@ -11,7 +11,7 @@ var baseHub = new (function() {
     self.server = $.connection.baseHub.server;
     self.client = $.connection.baseHub.client;
     
-    client.syncUsers = function (users) {
+    self.client.syncUsers = function (users) {
         users.forEach(function (obj) {
             chatModel.users.push(new User(
 											obj.Username,
@@ -22,10 +22,21 @@ var baseHub = new (function() {
         });
         gameHub.syncGame();
     };
+
+    self.client.newUser = function(user) {
+        chatModel.users.push(user);
+    };
     
     self.client.syncGame = function (game) {
         //sync players
         game.Players.forEach(self.takeSeat);
+    };
+    
+    self.client.signIn = function() {
+        $("#login-form").fadeOut(400, function() {
+            $("#main-container").fadeIn();
+            $("#input-message").focus();
+        });
     };
 
     return {        
@@ -57,24 +68,12 @@ var chatHub = (function () {
         chatModel.messages.push(message);
         var $chatWindow = $("#chat-window");
         $chatWindow.scrollTop($chatWindow[0].scrollHeight);
-    };
-    
-
-    client.signIn = function(user) {
-        $("#login-form").fadeOut(400, function () {
-            $("#main-container").fadeIn();
-            $("#input-message").focus();
-        });
-        
+    };        
         chatModel.curUser.gravatarHash(user.GravatarHash);
         chatModel.curUser.connectionId(user.ConnectionId);
     };
 
-    client.newUser = function(user) {
-        chatModel.users.push(user);
-    };
-
-    client.removeUser = function(user) {
+    client.removeUser = function (user) {
         chatModel.users.remove(function(item) {
             return item.ConnectionId === user.ConnectionId;
         });
