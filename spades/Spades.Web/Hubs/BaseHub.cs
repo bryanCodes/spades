@@ -44,17 +44,8 @@ namespace Spades.Hubs
         {
             var user = Users.SingleOrDefault(u => u.ConnectionId == connectionId);
             Users.Remove(user);
-            Clients.All.removeUser(user);
+            Clients.All.removeUser(connectionId);
         }
-
-        //public override Task OnConnected()
-        //{
-        //    var newConnection = Context.ConnectionId;
-        //    var client = Clients.Client(newConnection);
-        //    client.syncUsers(Users);
-        //    client.syncGame(Game);
-        //    return base.OnConnected();
-        //}
 
         public override Task OnDisconnected()
         {

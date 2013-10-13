@@ -32,9 +32,9 @@ var baseHub = new (function() {
                                       ));
     };
     
-    self.client.removeUser = function (user) {
+    self.client.removeUser = function (connectionId) {
         chatModel.users.remove(function (item) {
-            return item.connectionId === user.ConnectionId;
+            return item.connectionId() === connectionId;
         });
     };
     
