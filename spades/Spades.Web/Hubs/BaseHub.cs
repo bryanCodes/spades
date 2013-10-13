@@ -28,9 +28,10 @@ namespace Spades.Hubs
             user.ConnectionId = Context.ConnectionId;
 
             Users.Add(user);
+
             Clients.Caller.syncUsers(Users);
-            Clients.Others.newUser(user);
-            Clients.Caller.signIn();
+            Clients.Others.addUser(user);
+            Clients.Caller.signIn(user);
         }
 
         public void SyncGame()
@@ -40,7 +41,7 @@ namespace Spades.Hubs
 
         private void SignOut(string connectionId)
         {
-            var user = Users.Single(u => u.ConnectionId == connectionId);
+            var user = Users.SingleOrDefault(u => u.ConnectionId == connectionId);
             Users.Remove(user);
             Clients.All.removeUser(user);
         }

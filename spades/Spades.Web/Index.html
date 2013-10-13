@@ -60,7 +60,7 @@
         <div class="player" data-bind="attr: { id: 'player-' + Id }">
             <div data-bind="text: 'player ' + Id"></div>
             <div data-bind="text: user().Username"></div>
-            <form data-bind="visible: !(user().Username), submit: function () { gameHub.takeSeat(Id); }">
+            <form data-bind="visible: !(user().Username), submit: function () { baseHub.takeSeat(Id); }">
                 <input type="submit" value="Sit"/>
             </form>
         </div>

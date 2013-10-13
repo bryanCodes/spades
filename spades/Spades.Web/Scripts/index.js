@@ -20,11 +20,17 @@ var baseHub = new (function() {
 											obj.ConnectionId
 										));
         });
-        gameHub.syncGame();
+        //gameHub.syncGame();
     };
 
-    self.client.newUser = function(user) {
+    self.client.addUser = function(user) {
         chatModel.users.push(user);
+    };
+    
+    self.client.removeUser = function (user) {
+        chatModel.users.remove(function (item) {
+            return item.ConnectionId === user.ConnectionId;
+        });
     };
     
     self.client.syncGame = function (game) {
@@ -32,7 +38,19 @@ var baseHub = new (function() {
         game.Players.forEach(self.takeSeat);
     };
     
-    self.client.signIn = function() {
+    self.client.takeSeat = function (user, seatId) {
+        self.takeSeat(user, seatId);
+    };
+
+    self.takeSeat = function (user, seatId) {
+        gameModel.players()[seatId].user(user || {});
+    };
+
+    
+    self.client.signIn = function (user) {
+        chatModel.curUser.gravatarHash(user.GravatarHash);
+        chatModel.curUser.connectionId(user.ConnectionId);
+
         $("#login-form").fadeOut(400, function() {
             $("#main-container").fadeIn();
             $("#input-message").focus();
@@ -41,7 +59,7 @@ var baseHub = new (function() {
 
     return {        
         signIn: function () {
-            server.signIn(ko.toJS(chatModel.curUser));
+            self.server.signIn(ko.toJS(chatModel.curUser));
         }
     };
 })();
@@ -69,21 +87,12 @@ var chatHub = (function () {
         var $chatWindow = $("#chat-window");
         $chatWindow.scrollTop($chatWindow[0].scrollHeight);
     };        
-        chatModel.curUser.gravatarHash(user.GravatarHash);
-        chatModel.curUser.connectionId(user.ConnectionId);
-    };
-
-    client.removeUser = function (user) {
-        chatModel.users.remove(function(item) {
-            return item.ConnectionId === user.ConnectionId;
-        });
-    };
     
     return {
         send: function() {
             server.send(ko.toJS(chatModel.message));
             chatModel.message.messageText('');
-        },
+        }
     };
 })();
 
@@ -102,14 +111,6 @@ var gameHub = (function () {
     var self = this;
     self.server = $.connection.gameHub.server;
     self.client = $.connection.gameHub.client;
-
-    self.client.takeSeat = function (user, seatId) {
-        self.takeSeat(user, seatId);
-    };
-
-    self.takeSeat = function(user, seatId) {
-        gameModel.players()[seatId].user(user || {});
-    };
     
     return {
         syncGame: function() {
