@@ -13,7 +13,9 @@ var baseHub = new (function() {
     self.client = $.connection.baseHub.client;
 
     return {        
-        
+        signIn: function () {
+            server.signIn(ko.toJS(chatModel.curUser));
+        }
     };
 })();
 
@@ -78,9 +80,6 @@ var chatHub = (function () {
             server.send(ko.toJS(chatModel.message));
             chatModel.message.messageText('');
         },
-        signIn: function() {
-            server.signIn(ko.toJS(chatModel.curUser));
-        }
     };
 })();
 
