@@ -1,12 +1,15 @@
+function user(username, email, gravatarHash, connectionId){
+	var self = this;
+	self.username = ko.observable(username);
+	self.email = ko.observable(email);
+	self.gravatarHash = ko.observable(gravatarHash);
+	self.connectionId = ko.observable(connectionId);
+}
+
 var chatModel = new (function () {
     var self = this;
     
-    self.curUser = {
-        username: ko.observable(),
-        email: ko.observable(),
-        gravatarHash: ko.observable(),
-        connectionId: ko.observable()
-    };
+    self.curUser = new user();
     
     self.message = {
         user: self.curUser,
@@ -25,11 +28,17 @@ var chatHub = (function () {
         chatModel.messages.push(message);
         var $chatWindow = $("#chat-window");
         $chatWindow.scrollTop($chatWindow[0].scrollHeight);
-
     };
     
     client.syncUsers = function(users) {
-        chatModel.users(users);
+        users.forEach(function(obj){
+			chatModel.users.push(new user(
+											obj.Username, 
+											obj.Email, 
+											obj.GravatarHash, 
+											obj.ConnectionId
+										));
+		});
         gameHub.syncGame();
     };
 
