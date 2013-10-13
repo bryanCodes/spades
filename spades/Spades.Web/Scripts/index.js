@@ -12,6 +12,7 @@ var baseHub = new (function() {
     self.client = $.connection.baseHub.client;
     
     self.client.syncUsers = function (users) {
+        chatModel.users.removeAll();
         users.forEach(function (obj) {
             chatModel.users.push(new User(
 											obj.Username,
@@ -23,12 +24,17 @@ var baseHub = new (function() {
     };
 
     self.client.addUser = function(user) {
-        chatModel.users.push(user);
+        chatModel.users.push(new User(
+                                        user.Username,
+                                        user.Email,
+                                        user.GravatarHash,
+                                        user.ConnectionId
+                                      ));
     };
     
     self.client.removeUser = function (user) {
         chatModel.users.remove(function (item) {
-            return item.ConnectionId === user.ConnectionId;
+            return item.connectionId === user.ConnectionId;
         });
     };
     
