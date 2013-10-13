@@ -6,10 +6,21 @@ function User(username, email, gravatarHash, connectionId){
 	self.connectionId = ko.observable(connectionId);
 }
 
+var baseHub = new (function() {
+    var self = this;
+
+    self.server = $.connection.baseHub.server;
+    self.client = $.connection.baseHub.client;
+
+    return {        
+        
+    };
+})();
+
 var chatModel = new (function () {
     var self = this;
     
-    self.curUser = new user();
+    self.curUser = new User();
     
     self.message = {
         user: self.curUser,
