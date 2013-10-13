@@ -1,4 +1,4 @@
-function user(username, email, gravatarHash, connectionId){
+function User(username, email, gravatarHash, connectionId){
 	var self = this;
 	self.username = ko.observable(username);
 	self.email = ko.observable(email);
@@ -32,7 +32,7 @@ var chatHub = (function () {
     
     client.syncUsers = function(users) {
         users.forEach(function(obj){
-			chatModel.users.push(new user(
+			chatModel.users.push(new User(
 											obj.Username, 
 											obj.Email, 
 											obj.GravatarHash, 
