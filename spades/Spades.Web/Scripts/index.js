@@ -90,7 +90,7 @@ var gameHub = (function () {
     };
 
     self.takeSeat = function(user, seatId) {
-        gameModel.players()[seatId].user(user);
+        gameModel.players()[seatId].user(user || {});
     };
     
     return {
