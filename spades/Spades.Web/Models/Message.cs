@@ -2,7 +2,9 @@
 {
     public class Message
     {
-        public User User { get; set; }
+        public string Username { get; set; }
+
+        public string GravatarHash { get; set; }
 
         public string MessageText { get; set; }
     }

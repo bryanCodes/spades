@@ -1,7 +1,4 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
-using Spades.App.Utilities;
-using Spades.Models;
+﻿using Spades.Models;
 
 namespace Spades.Hubs
 {

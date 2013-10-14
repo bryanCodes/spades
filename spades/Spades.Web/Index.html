@@ -31,7 +31,7 @@
             </div>
 
             <form data-bind="submit: chatHub.send">
-                <input type="text" id="input-message" data-bind="value: chatModel.message.messageText"/>
+                <input type="text" id="input-message" data-bind="value: chatModel.messageText"/>
                 <input type="submit" value="Send"/>
             </form>
         </div>
@@ -41,11 +41,11 @@
     <script id="message-template" type="text/html">
         <div class="message-content" data-bind="css: { alt: $index() % 2 }">
 			<div class="avatar-container">
-				<img data-bind="attr: { src: getGravatarUrl(User.GravatarHash, 50) }"/>
+				<img data-bind="attr: { src: getGravatarUrl(gravatarHash, 50) }"/>
 			</div>
 			<div class="message-container">
-				<div class="username" data-bind="text: User.Username + ':'"></div>
-				<div class="message" data-bind="text: MessageText"></div>
+				<div class="username" data-bind="text: username + ':'"></div>
+				<div class="message" data-bind="text: messageText"></div>
 			</div>
         </div>
     </script>

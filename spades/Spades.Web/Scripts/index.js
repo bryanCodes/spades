@@ -6,6 +6,13 @@ function User(username, email, gravatarHash, connectionId){
 	self.connectionId = ko.observable(connectionId);
 }
 
+function Message(username, gravatarHash, messageText) {
+    var self = this;
+    self.username = username;
+    self.gravatarHash = gravatarHash;
+    self.messageText = messageText;
+}
+
 var baseHub = new (function() {
     var self = this;
     self.server = $.connection.baseHub.server;
@@ -70,11 +77,7 @@ var chatModel = new (function () {
     var self = this;
     
     self.curUser = new User();
-    
-    self.message = {
-        user: self.curUser,
-        messageText: ko.observable()
-    };
+    self.messageText = ko.observable();
 
     self.messages = ko.observableArray();
     self.users = ko.observableArray();
@@ -85,15 +88,22 @@ var chatHub = (function () {
     var client = $.connection.chatHub.client;
 
     client.addMessage = function(message) {
-        chatModel.messages.push(message);
+        chatModel.messages.push(new Message(message.Username,
+                                            message.GravatarHash,
+                                            message.MessageText)
+                                            );
+        
         var $chatWindow = $("#chat-window");
         $chatWindow.scrollTop($chatWindow[0].scrollHeight);
     };        
     
     return {
         send: function() {
-            server.send(ko.toJS(chatModel.message));
-            chatModel.message.messageText('');
+            server.send(ko.toJS(new Message(chatModel.curUser.username,
+                                    chatModel.curUser.gravatarHash,
+                                    chatModel.messageText)
+                                    ));
+            chatModel.messageText('');
         }
     };
 })();
@@ -109,7 +119,11 @@ var gameModel = new (function() {
     ]);
     
     self.takeSeat = function (user, seatId) {
-        self.players()[seatId].user(user || {});
+        self.players()[seatId].user = user || {};
+    };
+
+    self.removeFromSeat = function(seatId) {
+        self.players()[seatId].user = {};
     };
 })();
 
