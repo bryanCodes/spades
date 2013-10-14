@@ -51,10 +51,6 @@ var baseHub = new (function() {
         
         //I swear this is going to do more things soon.
     };
-
-    self.client.takeSeat = function(user, seatId) {
-        self.takeSeat(user, seatId);
-    };
     
     self.client.signIn = function (user) {
         chatModel.curUser.gravatarHash(user.GravatarHash);
