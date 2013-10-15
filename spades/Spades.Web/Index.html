@@ -68,6 +68,9 @@
             <form data-bind="visible: !(username), submit: function () { gameHub.takeSeat($index()); }">
                 <input type="submit" value="Sit"/>
             </form>
+            <form data-bind="visible: (connectionId === chatModel.user.connectionId()), submit: function () { gameHub.removeFromSeat($index()); }">
+                <input type="submit" value="Stand"/>
+            </form>
         </div>
     </script>
 </body>
