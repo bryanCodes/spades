@@ -1,9 +1,9 @@
 ﻿var chatModel = new (function() {
     var self = this;
 
-    self.curUser = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
+    self.user = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
     
-    self.curMessage = new Message(self.curUser.username, self.curUser.gravatarHash, ko.observable());
+    self.message = new Message(self.user.username, self.user.gravatarHash, ko.observable());
 
     self.messages = ko.observableArray();
     self.users = ko.observableArray();
@@ -12,18 +12,18 @@
 var gameModel = new (function() {
     var self = this;
 
-    self.players = ko.observableArray([
-        { Id: 0, user: ko.observable({}) },
-        { Id: 1, user: ko.observable({}) },
-        { Id: 2, user: ko.observable({}) },
-        { Id: 3, user: ko.observable({}) }
+    self.users = ko.observableArray([
+        ko.observable(new User()),
+        ko.observable(new User()),
+        ko.observable(new User()),
+        ko.observable(new User())
     ]);
 
     self.takeSeat = function(user, seatId) {
-        self.players()[seatId].user = user || {};
+        self.users()[seatId](user || new User());
     };
 
     self.removeFromSeat = function(seatId) {
-        self.players()[seatId].user = {};
+        self.users()[seatId](new User());
     };
 })();

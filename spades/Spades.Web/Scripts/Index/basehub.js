@@ -24,22 +24,40 @@
                                       ));
     };
 
-    self.client.removeUser = function (connectionId) {
+    self.client.removeUser = function (connectionId, index) {
         chatModel.users.remove(function (item) {
-            return item.connectionId() === connectionId;
+            return item.connectionId === connectionId;
         });
+        
+        if (index !== -1) {
+            gameModel.removeFromSeat(index);
+        }
     };
 
     self.client.syncGame = function (game) {
-        //sync players
-        game.Players.forEach(gameModel.takeSeat);
+        //sync Users
+        game.Users.forEach(function (obj, index) {
+            var user = new User();
+
+            if (obj != null) {
+                user = new User
+                           (
+                                obj.Username,
+                                obj.Email,
+                                obj.GravatarHash,
+                                obj.ConnectionId
+                            );
+            }
+
+            gameModel.takeSeat(user, index);
+        });
 
         //I swear this is going to do more things soon.
     };
 
     self.client.signIn = function (user) {
-        chatModel.curUser.gravatarHash(user.GravatarHash);
-        chatModel.curUser.connectionId(user.ConnectionId);
+        chatModel.user.gravatarHash(user.GravatarHash);
+        chatModel.user.connectionId(user.ConnectionId);
 
         $("#login-form").fadeOut(400, function () {
             $("#main-container").fadeIn();
@@ -49,7 +67,7 @@
 
     return {
         signIn: function () {
-            self.server.signIn(ko.toJS(chatModel.curUser));
+            self.server.signIn(ko.toJS(chatModel.user));
         }
     };
 })();

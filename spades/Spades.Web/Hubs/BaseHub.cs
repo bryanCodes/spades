@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNet.SignalR;
@@ -18,7 +19,7 @@ namespace Spades.Hubs
 
             Game = new Game
             {
-                Players = new User[4]
+                Users = new User[4]
             };
         }
 
@@ -30,7 +31,7 @@ namespace Spades.Hubs
             Users.Add(user);
 
             Clients.Caller.syncUsers(Users);
-            Clients.Caller.syncGames(Game);
+            Clients.Caller.syncGame(Game);
             Clients.Others.addUser(user);
             Clients.Caller.signIn(user);
         }
@@ -43,8 +44,9 @@ namespace Spades.Hubs
         private void SignOut(string connectionId)
         {
             var user = Users.SingleOrDefault(u => u.ConnectionId == connectionId);
+            var playerIndex = Array.IndexOf(Game.Users, user);
             Users.Remove(user);
-            Clients.All.removeUser(connectionId);
+            Clients.All.removeUser(connectionId, playerIndex);
         }
 
         public override Task OnDisconnected()

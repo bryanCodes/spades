@@ -16,8 +16,8 @@
 
     return {
         send: function () {
-            server.send(ko.toJS(chatModel.curMessage));
-            chatModel.curMessage.messageText('');
+            server.send(ko.toJS(chatModel.message));
+            chatModel.message.messageText('');
         }
     };
 })();

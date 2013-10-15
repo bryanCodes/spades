@@ -18,14 +18,14 @@
 <body>
     <form id="login-form" data-bind="submit: baseHub.signIn">
         <label>Choose Your Username:</label>
-        <input type="text" id="input-username" data-bind="value: chatModel.curUser.username"/>
+        <input type="text" id="input-username" data-bind="value: chatModel.user.username"/>
         <label>Your Email Address:</label>
-        <input type="text" id="input-email" data-bind="value: chatModel.curUser.email"/>
+        <input type="text" id="input-email" data-bind="value: chatModel.user.email"/>
         <input type="submit" value="Enter"/>
     </form>
     
     <div id="main-container">
-        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: gameModel.players }"></div>
+        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: gameModel.users }"></div>
         <div id="chat-area">
             <div id="chat-window">
                 <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
@@ -35,7 +35,7 @@
             </div>
 
             <form data-bind="submit: chatHub.send">
-                <input type="text" id="input-message" data-bind="value: chatModel.curMessage.messageText"/>
+                <input type="text" id="input-message" data-bind="value: chatModel.message.messageText"/>
                 <input type="submit" value="Send"/>
             </form>
         </div>
@@ -62,10 +62,10 @@
     </script>
     
     <script id="player-template" type="text/html">
-        <div class="player" data-bind="attr: { id: 'player-' + Id }">
-            <div data-bind="text: 'player ' + Id"></div>
-            <div data-bind="text: user().Username"></div>
-            <form data-bind="visible: !(user().Username), submit: function () { gameHub.takeSeat(Id); }">
+        <div class="player" data-bind="attr: { id: 'player-' + $index() }">
+            <div data-bind="text: 'player ' + $index()"></div>
+            <div data-bind="text: username"></div>
+            <form data-bind="visible: !(username), submit: function () { gameHub.takeSeat($index()); }">
                 <input type="submit" value="Sit"/>
             </form>
         </div>
