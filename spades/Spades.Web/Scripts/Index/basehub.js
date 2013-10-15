@@ -30,7 +30,7 @@
         });
         
         if (index !== -1) {
-            gameModel.removeFromSeat(index);
+            gameHub.removeFromSeat(index);
         }
     };
 
