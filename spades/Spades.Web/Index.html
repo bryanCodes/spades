@@ -35,7 +35,7 @@
             </div>
 
             <form data-bind="submit: chatHub.send">
-                <input type="text" id="input-message" data-bind="value: chatModel.messageText"/>
+                <input type="text" id="input-message" data-bind="value: chatModel.curMessage.messageText"/>
                 <input type="submit" value="Send"/>
             </form>
         </div>
@@ -56,7 +56,7 @@
     
     <script id="user-template" type="text/html">
         <div class="user">
-            <img alt="user image" data-bind="attr: { src: getGravatarUrl(gravatarHash(), 40) }"/>
+            <img alt="user image" data-bind="attr: { src: getGravatarUrl(gravatarHash, 40) }"/>
             <div data-bind="text: username"></div>
         </div>
     </script>

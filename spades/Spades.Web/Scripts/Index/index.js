@@ -1,9 +1,9 @@
 function User(username, email, gravatarHash, connectionId){
 	var self = this;
-	self.username = ko.observable(username);
-	self.email = ko.observable(email);
-	self.gravatarHash = ko.observable(gravatarHash);
-	self.connectionId = ko.observable(connectionId);
+	self.username = username;
+	self.email = email;
+	self.gravatarHash = gravatarHash;
+	self.connectionId = connectionId;
 }
 
 function Message(username, gravatarHash, messageText) {

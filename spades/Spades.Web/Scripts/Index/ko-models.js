@@ -1,15 +1,15 @@
-﻿var chatModel = new (function () {
+﻿var chatModel = new (function() {
     var self = this;
 
-    self.curUser = new User();
-    self.messageText = ko.observable();
+    self.curUser = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
+    
+    self.curMessage = new Message(self.curUser.username, self.curUser.gravatarHash, ko.observable());
 
     self.messages = ko.observableArray();
     self.users = ko.observableArray();
 })();
 
-
-var gameModel = new (function () {
+var gameModel = new (function() {
     var self = this;
 
     self.players = ko.observableArray([
@@ -19,11 +19,11 @@ var gameModel = new (function () {
         { Id: 3, user: ko.observable({}) }
     ]);
 
-    self.takeSeat = function (user, seatId) {
+    self.takeSeat = function(user, seatId) {
         self.players()[seatId].user = user || {};
     };
 
-    self.removeFromSeat = function (seatId) {
+    self.removeFromSeat = function(seatId) {
         self.players()[seatId].user = {};
     };
 })();
