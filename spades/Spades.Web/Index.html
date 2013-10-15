@@ -9,7 +9,11 @@
     <script src="Scripts/knockout-2.3.0.debug.js"></script>
     <!-- ReSharper disable once Html.PathError -->
     <script src="/Spades/signalr/hubs"></script>
-    <script src="Scripts/index.js"></script>
+    <script src="Scripts/index/index.js"></script>
+    <script src="Scripts/index/chathub.js"></script>
+    <script src="Scripts/index/gamehub.js"></script>
+    <script src="Scripts/index/basehub.js"></script>
+    <script src="Scripts/index/ko-models.js"></script>
 </head>
 <body>
     <form id="login-form" data-bind="submit: baseHub.signIn">
