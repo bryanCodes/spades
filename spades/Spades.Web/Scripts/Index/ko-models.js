@@ -1,8 +1,12 @@
-﻿var chatModel = new (function() {
+﻿var user = new (function() {
+
+});
+
+var chatModel = new (function () {
     var self = this;
 
     self.user = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
-    
+
     self.message = new Message(self.user.username, self.user.gravatarHash, ko.observable());
 
     self.messages = ko.observableArray();

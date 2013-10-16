@@ -4,6 +4,10 @@ function User(username, email, gravatarHash, connectionId){
 	self.email = email;
 	self.gravatarHash = gravatarHash;
 	self.connectionId = connectionId;
+
+    self.isCurrentUser = ko.computed(function() {
+        return ko.unwrapObservable(self.connectionId) === chatModel.user.connectionId();
+    });
 }
 
 function Message(username, gravatarHash, messageText) {
@@ -13,7 +17,7 @@ function Message(username, gravatarHash, messageText) {
     self.messageText = messageText;
 }
 
-function Seat(id, user) {
+function Seat(user) {
     var self = this;
     self.user = user;
 }
@@ -21,17 +25,6 @@ function Seat(id, user) {
 function getGravatarUrl(gravatarHash, size) {
     return ["http://www.gravatar.com/avatar/", gravatarHash, "?s=", size].join("");
 }
-
-//Array.prototype.indexOf = function(predicate) {
-//    var self = this;
-//    self.forEach(function(item, index) {
-//        if (predicate(item)) {
-//            return index;
-//        }
-//    });
-
-//    return -1;
-//};
 
 //page initialization
 $(document).ready(function() {
