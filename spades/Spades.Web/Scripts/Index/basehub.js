@@ -4,9 +4,9 @@
     self.client = $.connection.baseHub.client;
 
     self.client.syncUsers = function (users) {
-        chatModel.users.removeAll();
+        viewModel.chat.users.removeAll();
         users.forEach(function (obj) {
-            chatModel.users.push(new User(
+            viewModel.chat.users.push(new User(
 											obj.Username,
 											obj.Email,
 											obj.GravatarHash,
@@ -16,7 +16,7 @@
     };
 
     self.client.addUser = function (user) {
-        chatModel.users.push(new User(
+        viewModel.chat.users.push(new User(
                                         user.Username,
                                         user.Email,
                                         user.GravatarHash,
@@ -25,7 +25,7 @@
     };
 
     self.client.removeUser = function (connectionId, index) {
-        chatModel.users.remove(function (item) {
+        viewModel.chat.users.remove(function (item) {
             return item.connectionId === connectionId;
         });
         
@@ -49,15 +49,15 @@
                             );
             }
 
-            gameModel.takeSeat(user, index);
+            viewModel.game.takeSeat(user, index);
         });
 
         //I swear this is going to do more things soon.
     };
 
     self.client.signIn = function (user) {
-        chatModel.user.gravatarHash(user.GravatarHash);
-        chatModel.user.connectionId(user.ConnectionId);
+        viewModel.user.gravatarHash(user.GravatarHash);
+        viewModel.user.connectionId(user.ConnectionId);
 
         $("#login-form").fadeOut(400, function () {
             $("#main-container").fadeIn();
@@ -67,7 +67,7 @@
 
     return {
         signIn: function () {
-            self.server.signIn(ko.toJS(chatModel.user));
+            self.server.signIn(ko.toJS(viewModel.user));
         }
     };
 })();

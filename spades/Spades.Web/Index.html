@@ -18,24 +18,24 @@
 <body>
     <form id="login-form" data-bind="submit: baseHub.signIn">
         <label>Choose Your Username:</label>
-        <input type="text" id="input-username" data-bind="value: chatModel.user.username"/>
+        <input type="text" id="input-username" data-bind="value: user.username"/>
         <label>Your Email Address:</label>
-        <input type="text" id="input-email" data-bind="value: chatModel.user.email"/>
+        <input type="text" id="input-email" data-bind="value: user.email"/>
         <input type="submit" value="Enter"/>
     </form>
     
     <div id="main-container">
-        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: gameModel.users }"></div>
+        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: game.users }"></div>
         <div id="chat-area">
             <div id="chat-window">
-                <div data-bind="template:{ name: 'message-template', foreach: chatModel.messages }">
+                <div data-bind="template:{ name: 'message-template', foreach: chat.messages }">
                 </div>
             </div>
-            <div id="user-list" data-bind="template: { name: 'user-template', foreach: chatModel.users }">
+            <div id="user-list" data-bind="template: { name: 'user-template', foreach: chat.users }">
             </div>
 
             <form data-bind="submit: chatHub.send">
-                <input type="text" id="input-message" data-bind="value: chatModel.message.messageText"/>
+                <input type="text" id="input-message" data-bind="value: chat.message.messageText"/>
                 <input type="submit" value="Send"/>
             </form>
         </div>
@@ -68,7 +68,7 @@
             <form data-bind="visible: !(username), submit: function () { gameHub.takeSeat($index()); }">
                 <input type="submit" value="Sit"/>
             </form>
-            <form data-bind="visible: (connectionId === chatModel.user.connectionId()), submit: function () { gameHub.removeFromSeat($index()); }">
+            <form data-bind="submit: function () { gameHub.removeFromSeat($index()); }">
                 <input type="submit" value="Stand"/>
             </form>
         </div>

@@ -3,7 +3,7 @@
     var client = $.connection.chatHub.client;
 
     client.addMessage = function (message) {
-        chatModel.messages.push(new Message
+        viewModel.chat.messages.push(new Message
                                     (
                                         message.Username,
                                         message.GravatarHash,
@@ -16,8 +16,8 @@
 
     return {
         send: function () {
-            server.send(ko.toJS(chatModel.message));
-            chatModel.message.messageText('');
+            server.send(ko.toJS(viewModel.chat.message));
+            viewModel.chat.message.messageText('');
         }
     };
 })();

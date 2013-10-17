@@ -4,7 +4,7 @@
     self.client = $.connection.gameHub.client;
 
     self.client.takeSeat = function (user, seatId) {
-        gameModel.takeSeat(new User
+        viewModel.game.takeSeat(new User
                                (
                                    user.Username,
                                    user.Email,
@@ -14,13 +14,13 @@
     };
 
     self.client.removeFromSeat = function (seatId) {
-        gameModel.removeFromSeat(seatId);
+        viewModel.game.removeFromSeat(seatId);
         //do some game pausing/freaking out... you know, once we get to that point
     };
 
     return {
         takeSeat: function (index) {
-            self.server.takeSeat(ko.toJS(chatModel.user), index);
+            self.server.takeSeat(ko.toJS(viewModel.user), index);
         },
         removeFromSeat: function(index) {
             self.server.removeFromSeat(index);

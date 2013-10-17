@@ -4,10 +4,6 @@ function User(username, email, gravatarHash, connectionId){
 	self.email = email;
 	self.gravatarHash = gravatarHash;
 	self.connectionId = connectionId;
-
-    self.isCurrentUser = ko.computed(function() {
-        return ko.unwrapObservable(self.connectionId) === chatModel.user.connectionId();
-    });
 }
 
 function Message(username, gravatarHash, messageText) {
@@ -29,6 +25,7 @@ function getGravatarUrl(gravatarHash, size) {
 //page initialization
 $(document).ready(function() {
     $.connection.hub.start();
-    ko.applyBindings();
+
+    ko.applyBindings(viewModel);
     $("#input-username").focus();
 });
