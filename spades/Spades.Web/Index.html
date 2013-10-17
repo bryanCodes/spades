@@ -25,7 +25,7 @@
     </form>
     
     <div id="main-container">
-        <div id ="game-area" data-bind="template: { name: 'player-template', foreach: game.users }"></div>
+        <div id ="game-area" data-bind="template: { name: 'seat-template', foreach: game.seats }"></div>
         <div id="chat-area">
             <div id="chat-window">
                 <div data-bind="template:{ name: 'message-template', foreach: chat.messages }">
@@ -61,14 +61,14 @@
         </div>
     </script>
     
-    <script id="player-template" type="text/html">
+    <script id="seat-template" type="text/html">
         <div class="player" data-bind="attr: { id: 'player-' + $index() }">
             <div data-bind="text: 'player ' + $index()"></div>
-            <div data-bind="text: username"></div>
-            <form data-bind="visible: !(username), submit: function () { gameHub.takeSeat($index()); }">
+            <div data-bind="text: user().username"></div>
+            <form data-bind="visible: !(user().username), submit: function () { gameHub.takeSeat($index()); }">
                 <input type="submit" value="Sit"/>
             </form>
-            <form data-bind="submit: function () { gameHub.removeFromSeat($index()); }">
+            <form data-bind="visible: user().isCurrent, submit: function () { gameHub.removeFromSeat($index()); }">
                 <input type="submit" value="Stand"/>
             </form>
         </div>

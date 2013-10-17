@@ -4,6 +4,14 @@ function User(username, email, gravatarHash, connectionId){
 	self.email = email;
 	self.gravatarHash = gravatarHash;
 	self.connectionId = connectionId;
+
+    self.isCurrent = ko.computed(function(){
+        if(!self.connectionId || !viewModel || !viewModel.user.connectionId()){
+            return false;
+        }
+
+        return (self.connectionId || self.connectionId()) === viewModel.user.connectionId();
+    });
 }
 
 function Message(username, gravatarHash, messageText) {
@@ -13,8 +21,9 @@ function Message(username, gravatarHash, messageText) {
     self.messageText = messageText;
 }
 
-function Seat(user) {
+function Seat(id, user) {
     var self = this;
+    self.id = id;
     self.user = user;
 }
 

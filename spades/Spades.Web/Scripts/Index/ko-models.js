@@ -1,63 +1,34 @@
-﻿// var curUser = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
-
-// var chatModel = new (function () {
-//     var self = this;
-
-//     self.message = new Message(curUser.username, self.user.gravatarHash, ko.observable());
-
-//     self.messages = ko.observableArray();
-//     self.users = ko.observableArray();
-// })();
-
-// var gameModel = new (function() {
-//     var self = this;
-
-//     self.users = ko.observableArray([
-//         ko.observable(new User()),
-//         ko.observable(new User()),
-//         ko.observable(new User()),
-//         ko.observable(new User())
-//     ]);
-
-//     self.takeSeat = function(user, seatId) {
-//         self.users()[seatId](user || new User());
-//     };
-
-//     self.removeFromSeat = function(seatId) {
-//         self.users()[seatId](new User());
-//     };
-// })();
-function ChatModel(user) {
+﻿function ChatModel(user) {
     var self = this;
 
     self.message = new Message(user.username, user.gravatarHash, ko.observable());
 
     self.messages = ko.observableArray();
     self.users = ko.observableArray();
-};
+}
 
-function GameModel() {
+function GameModel(seats) {
     var self = this;
 
-    self.users = ko.observableArray([
-        ko.observable(new User()),
-        ko.observable(new User()),
-        ko.observable(new User()),
-        ko.observable(new User())
-    ]);
+    self.seats = ko.observableArray(seats);
 
     self.takeSeat = function(user, seatId) {
-        self.users()[seatId](user || new User());
+        self.seats()[seatId].user(user || new User());
     };
 
     self.removeFromSeat = function(seatId) {
-        self.users()[seatId](new User());
+        self.seats()[seatId].user(new User());
     };
-};
+}
 
 var viewModel = new (function() {
     var self = this;
     self.user = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
     self.chat = new ChatModel(self.user);
-    self.game = new GameModel();
+    self.game = new GameModel([
+                                new Seat(0, ko.observable(new User())),
+                                new Seat(1, ko.observable(new User())),
+                                new Seat(2, ko.observable(new User())),
+                                new Seat(3, ko.observable(new User()))
+                                ]);
 })();
