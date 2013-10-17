@@ -37,10 +37,10 @@
     self.client.syncGame = function (game) {
         //sync Users
         game.Users.forEach(function (obj, index) {
-            var user = new User();
+            var user = getObservableUser();
 
             if (obj != null) {
-                user = new User
+                user = getObservableUser
                            (
                                 obj.Username,
                                 obj.Email,

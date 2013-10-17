@@ -13,7 +13,7 @@ function GameModel(seats) {
     self.seats = ko.observableArray(seats);
 
     self.takeSeat = function(user, seatId) {
-        self.seats()[seatId].user(user || new User());
+        self.seats()[seatId].user = user;
     };
 
     self.removeFromSeat = function(seatId) {
@@ -23,12 +23,12 @@ function GameModel(seats) {
 
 var viewModel = new (function() {
     var self = this;
-    self.user = new User(ko.observable(), ko.observable(), ko.observable(), ko.observable());
+    self.user = getObservableUser();
     self.chat = new ChatModel(self.user);
     self.game = new GameModel([
-                                new Seat(0, ko.observable(new User())),
-                                new Seat(1, ko.observable(new User())),
-                                new Seat(2, ko.observable(new User())),
-                                new Seat(3, ko.observable(new User()))
+                                new Seat(0, getObservableUser()),
+                                new Seat(1, getObservableUser()),
+                                new Seat(2, getObservableUser()),
+                                new Seat(3, getObservableUser())
                                 ]);
 })();

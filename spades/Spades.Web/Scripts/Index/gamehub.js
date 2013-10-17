@@ -4,13 +4,11 @@
     self.client = $.connection.gameHub.client;
 
     self.client.takeSeat = function (user, seatId) {
-        viewModel.game.takeSeat(new User
-                               (
-                                   user.Username,
-                                   user.Email,
-                                   user.GravatarHash,
-                                   user.ConnectionId
-                                ), seatId);
+        viewModel.game.takeSeat(getObservableUser(
+                                  user.Username,
+                                  user.Email,
+                                  user.GravatarHash,
+                                  user.ConnectionId), seatId);
     };
 
     self.client.removeFromSeat = function (seatId) {

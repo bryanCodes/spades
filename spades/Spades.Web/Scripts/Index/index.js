@@ -31,6 +31,10 @@ function getGravatarUrl(gravatarHash, size) {
     return ["http://www.gravatar.com/avatar/", gravatarHash, "?s=", size].join("");
 }
 
+function getObservableUser(username, email, gravatarHash, connectionId){
+    return new User(ko.observable(username), ko.observable(email), ko.observable(gravatarHash), ko.observable(connectionId));
+}
+
 //page initialization
 $(document).ready(function() {
     $.connection.hub.start();
