@@ -64,11 +64,11 @@
     <script id="seat-template" type="text/html">
         <div class="player" data-bind="attr: { id: 'player-' + $index() }">
             <div data-bind="text: 'player ' + $index()"></div>
-            <div data-bind="text: user.username()"></div>
-            <form data-bind="visible: !(user.username()), submit: function () { gameHub.takeSeat($index()); }">
+            <div data-bind="text: user().username()"></div>
+            <form data-bind="visible: !occupied(), submit: function () { gameHub.takeSeat($index()); }">
                 <input type="submit" value="Sit"/>
             </form>
-            <form data-bind="visible: user.isCurrent, submit: function () { gameHub.removeFromSeat($index()); }">
+            <form data-bind="visible: user().isCurrent(), submit: function () { gameHub.removeFromSeat($index()); }">
                 <input type="submit" value="Stand"/>
             </form>
         </div>

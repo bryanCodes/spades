@@ -25,6 +25,10 @@ function Seat(id, user) {
     var self = this;
     self.id = id;
     self.user = user;
+
+    self.occupied = ko.computed(function(){
+        return (!self.user().username() == null);
+    });
 }
 
 function getGravatarUrl(gravatarHash, size) {
