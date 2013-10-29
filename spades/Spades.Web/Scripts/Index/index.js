@@ -6,11 +6,10 @@ function User(username, email, gravatarHash, connectionId){
 	self.connectionId = connectionId;
 
     self.isCurrent = ko.computed(function(){
-        if(!self.connectionId || !viewModel || !viewModel.user.connectionId()){
+        if(!viewModel)
             return false;
-        }
-
-        return (self.connectionId || self.connectionId()) === viewModel.user.connectionId();
+        
+        return ko.unwrap(self.connectionId) === viewModel.user.connectionId();
     });
 }
 
@@ -27,7 +26,7 @@ function Seat(id, user) {
     self.user = user;
 
     self.occupied = ko.computed(function(){
-        return (!self.user().username() == null);
+        return (self.user().username() != null);
     });
 }
 

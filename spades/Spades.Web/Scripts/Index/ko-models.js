@@ -17,7 +17,7 @@ function GameModel(seats) {
     };
 
     self.removeFromSeat = function(seatId) {
-        self.seats[seatId].user(new User());
+        self.seats[seatId].user(getObservableUser());
     };
 }
 
