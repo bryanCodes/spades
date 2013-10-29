@@ -19,9 +19,11 @@
     return {
         takeSeat: function (index) {
             self.server.takeSeat(ko.toJS(viewModel.user), index);
+            viewModel.isPlaying(true);
         },
         removeFromSeat: function(index) {
             self.server.removeFromSeat(index);
+            viewModel.isPlaying(false);
         }
     };
 })();

@@ -24,6 +24,7 @@ function GameModel(seats) {
 var viewModel = new (function() {
     var self = this;
     self.user = getObservableUser();
+    self.isPlaying = ko.observable(false);
     self.chat = new ChatModel(self.user);
     self.game = new GameModel([
                                 new Seat(0, ko.observable(getObservableUser())),

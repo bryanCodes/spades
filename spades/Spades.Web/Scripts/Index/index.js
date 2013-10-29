@@ -8,7 +8,7 @@ function User(username, email, gravatarHash, connectionId){
     self.isCurrent = ko.computed(function(){
         if(!viewModel)
             return false;
-        
+
         return ko.unwrap(self.connectionId) === viewModel.user.connectionId();
     });
 }

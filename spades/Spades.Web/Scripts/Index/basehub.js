@@ -25,7 +25,7 @@
     };
 
     self.client.removeUser = function (connectionId, index) {
-        viewModel.chat.users.remove(function (item) {
+            viewModel.chat.users.remove(function (item) {
             return item.connectionId === connectionId;
         });
         
