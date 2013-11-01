@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Web.Routing;
-using Spades.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace Spades
 {
@@ -9,8 +9,10 @@ namespace Spades
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RouteTable.Routes.MapHubs();
-            var application = this.Context.ApplicationInstance;
+            RouteTable.Routes.MapHubs(new HubConfiguration
+            {
+                EnableCrossDomain = true
+            });
         }
 
         protected void Session_Start(object sender, EventArgs e)
