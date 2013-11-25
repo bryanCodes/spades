@@ -9,10 +9,7 @@ namespace Spades
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            RouteTable.Routes.MapHubs(new HubConfiguration
-            {
-                EnableCrossDomain = true
-            });
+
         }
 
         protected void Session_Start(object sender, EventArgs e)
